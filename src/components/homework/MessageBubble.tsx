@@ -28,7 +28,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
           className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
             isUser
               ? 'bg-gradient-to-r from-[#F7931A] to-[#FF6B00] text-white rounded-tr-sm'
-              : 'bg-white/5 border border-white/10 text-white/90 rounded-tl-sm'
+              : 'bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-800 dark:text-white/90 rounded-tl-sm'
           }`}
         >
           {isUser ? (
@@ -47,9 +47,9 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
                   ol: ({ children }) => (
                     <ol className="list-decimal list-inside space-y-1 my-2">{children}</ol>
                   ),
-                  li: ({ children }) => <li className="text-white/80">{children}</li>,
+                  li: ({ children }) => <li className="text-gray-600 dark:text-white/80">{children}</li>,
                   code: ({ children }) => (
-                    <code className="bg-white/10 px-1.5 py-0.5 rounded text-xs font-mono">
+                    <code className="bg-gray-200 dark:bg-white/10 px-1.5 py-0.5 rounded text-xs font-mono">
                       {children}
                     </code>
                   ),
@@ -60,7 +60,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             </div>
           )}
         </div>
-        <span className="text-xs text-white/30 mt-1 px-1">
+        <span className="text-xs text-gray-400 dark:text-white/30 mt-1 px-1">
           {formatDate(message.timestamp)}
         </span>
       </div>

@@ -7,8 +7,8 @@ export const WeaknessDetection: React.FC = () => {
   return (
     <div className="p-6 space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-white">Détection des points faibles</h2>
-        <p className="text-sm text-white/50 mt-1">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Détection des points faibles</h2>
+        <p className="text-sm text-gray-500 dark:text-white/50 mt-1">
           Renseignez vos notes pour obtenir une analyse personnalisée et des recommandations.
         </p>
       </div>

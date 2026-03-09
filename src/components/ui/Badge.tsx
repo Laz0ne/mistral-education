@@ -14,7 +14,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   warning: 'bg-yellow-400/10 text-yellow-400 border-yellow-400/30',
   danger: 'bg-red-400/10 text-red-400 border-red-400/30',
   info: 'bg-blue-400/10 text-blue-400 border-blue-400/30',
-  default: 'bg-white/5 text-white/60 border-white/10',
+  default: 'bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-white/60 border-gray-200 dark:border-white/10',
   orange: 'bg-[#F7931A]/10 text-[#F7931A] border-[#F7931A]/30',
 };
 

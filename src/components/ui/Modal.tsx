@@ -56,15 +56,15 @@ export const Modal: React.FC<ModalProps> = ({
             transition={{ type: 'spring', duration: 0.3 }}
             className={`
               relative w-full ${sizeClasses[size]}
-              backdrop-blur-xl bg-[#1A1A1D] border border-white/10 rounded-2xl shadow-2xl
+              backdrop-blur-xl bg-white dark:bg-[#1A1A1D] border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl dark:shadow-2xl
             `}
           >
             {title && (
-              <div className="flex items-center justify-between p-5 border-b border-white/10">
-                <h2 className="text-lg font-semibold text-white">{title}</h2>
+              <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-white/10">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h2>
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-1.5 rounded-lg text-gray-400 dark:text-white/40 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -73,7 +73,7 @@ export const Modal: React.FC<ModalProps> = ({
             {!title && (
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 p-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/10 transition-colors z-10"
+                className="absolute top-4 right-4 p-1.5 rounded-lg text-gray-400 dark:text-white/40 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors z-10"
               >
                 <X className="w-5 h-5" />
               </button>

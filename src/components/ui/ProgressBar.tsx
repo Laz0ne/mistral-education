@@ -32,16 +32,16 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     <div className={`w-full ${className}`}>
       {(label || showValue) && (
         <div className="flex justify-between items-center mb-1.5">
-          {label && <span className="text-xs text-white/60">{label}</span>}
+          {label && <span className="text-xs text-gray-500 dark:text-white/60">{label}</span>}
           {showValue && (
-            <span className="text-xs font-medium text-white/80">
+            <span className="text-xs font-medium text-gray-700 dark:text-white/80">
               {value}/{max}
             </span>
           )}
         </div>
       )}
       <div
-        className={`w-full bg-white/10 rounded-full overflow-hidden ${sizeClasses[size]}`}
+        className={`w-full bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden ${sizeClasses[size]}`}
       >
         <motion.div
           initial={{ width: 0 }}

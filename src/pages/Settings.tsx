@@ -82,8 +82,8 @@ export const Settings: React.FC = () => {
   };
 
   const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
-      <h3 className="text-base font-semibold text-white mb-4">{title}</h3>
+    <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">{title}</h3>
       {children}
     </div>
   );
@@ -91,8 +91,8 @@ export const Settings: React.FC = () => {
   return (
     <div className="p-6 max-w-2xl mx-auto space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-white">Paramètres</h2>
-        <p className="text-sm text-white/50 mt-1">Personnalisez votre expérience Mistral Education.</p>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Paramètres</h2>
+        <p className="text-sm text-gray-500 dark:text-white/50 mt-1">Personnalisez votre expérience Mistral Education.</p>
       </div>
 
       {/* Profile */}
@@ -103,8 +103,8 @@ export const Settings: React.FC = () => {
               {form.firstName[0]}{form.lastName[0]}
             </div>
             <div>
-              <p className="text-sm font-semibold text-white">{form.firstName} {form.lastName}</p>
-              <p className="text-xs text-white/40">{form.grade} · {form.school}</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">{form.firstName} {form.lastName}</p>
+              <p className="text-xs text-gray-400 dark:text-white/40">{form.grade} · {form.school}</p>
             </div>
           </div>
 
@@ -124,15 +124,15 @@ export const Settings: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-white/70 mb-1.5">Classe</label>
+            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">Classe</label>
             <select
               name="grade"
               value={form.grade}
               onChange={handleChange}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#F7931A]/40"
+              className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-[#F7931A]/40"
             >
               {GRADES.map((g) => (
-                <option key={g} value={g} className="bg-[#1A1A1D]">{g}</option>
+                <option key={g} value={g} className="bg-white dark:bg-[#1A1A1D]">{g}</option>
               ))}
             </select>
           </div>
@@ -161,7 +161,7 @@ export const Settings: React.FC = () => {
                 className={`px-3 py-1.5 rounded-full text-sm transition-all ${
                   selected
                     ? 'bg-gradient-to-r from-[#F7931A] to-[#FF6B00] text-white'
-                    : 'bg-white/5 border border-white/10 text-white/50 hover:text-white'
+                    : 'bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-white/50 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
                 {subject}
@@ -173,7 +173,7 @@ export const Settings: React.FC = () => {
 
       {/* API Key */}
       <Section title="Clé API Mistral">
-        <p className="text-xs text-white/40 mb-3">
+        <p className="text-xs text-gray-400 dark:text-white/40 mb-3">
           Obtenez votre clé API sur{' '}
           <a
             href="https://console.mistral.ai"
@@ -192,12 +192,12 @@ export const Settings: React.FC = () => {
             value={form.apiKey}
             onChange={handleChange}
             placeholder="sk-..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 pr-10 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40"
+            className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 pr-10 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40"
           />
           <button
             type="button"
             onClick={() => setShowApiKey(!showApiKey)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white/30 hover:text-gray-600 dark:hover:text-white/60"
           >
             {showApiKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
@@ -208,13 +208,18 @@ export const Settings: React.FC = () => {
       <Section title="Apparence">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-white">Mode sombre</p>
-            <p className="text-xs text-white/40">Thème foncé par défaut</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-white">Mode sombre</p>
+            <p className="text-xs text-gray-400 dark:text-white/40">Thème foncé par défaut</p>
           </div>
           <button
-            onClick={() => setForm((prev) => ({ ...prev, darkMode: !prev.darkMode }))}
+            onClick={() => {
+              const newValue = !form.darkMode;
+              setForm((prev) => ({ ...prev, darkMode: newValue }));
+              updateStudent({ darkMode: newValue });
+              setSaved(false);
+            }}
             className={`relative w-12 h-6 rounded-full transition-colors ${
-              form.darkMode ? 'bg-[#F7931A]' : 'bg-white/20'
+              form.darkMode ? 'bg-[#F7931A]' : 'bg-gray-300 dark:bg-white/20'
             }`}
           >
             <div
@@ -249,7 +254,7 @@ export const Settings: React.FC = () => {
               Exporter
             </Button>
             <label className="flex-1">
-              <div className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 cursor-pointer transition-all">
+              <div className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-white/10 cursor-pointer transition-all">
                 <Upload className="w-4 h-4" />
                 Importer
               </div>
@@ -264,11 +269,11 @@ export const Settings: React.FC = () => {
           >
             Réinitialiser toutes les données
           </Button>
-          <p className="text-xs text-white/30 text-center">
+          <p className="text-xs text-gray-300 dark:text-white/30 text-center">
             La réinitialisation supprimera définitivement toutes vos données locales.
           </p>
 
-          <div className="pt-2 border-t border-white/5">
+          <div className="pt-2 border-t border-gray-100 dark:border-white/5">
             <Button
               variant="ghost"
               size="sm"

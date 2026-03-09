@@ -27,10 +27,10 @@ export const Dashboard: React.FC = () => {
         className="flex items-center justify-between"
       >
         <div>
-          <h2 className="text-2xl font-bold text-white">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             Bonjour, {student.firstName} 👋
           </h2>
-          <p className="text-sm text-white/50 mt-1">
+          <p className="text-sm text-gray-500 dark:text-white/50 mt-1">
             {new Date().toLocaleDateString('fr-FR', {
               weekday: 'long',
               year: 'numeric',
@@ -40,8 +40,8 @@ export const Dashboard: React.FC = () => {
           </p>
         </div>
         <div className="hidden sm:block text-right">
-          <p className="text-xs text-white/40">{student.school}</p>
-          <p className="text-xs text-white/40">{student.grade}</p>
+          <p className="text-xs text-gray-400 dark:text-white/40">{student.school}</p>
+          <p className="text-xs text-gray-400 dark:text-white/40">{student.grade}</p>
         </div>
       </motion.div>
 
@@ -59,10 +59,10 @@ export const Dashboard: React.FC = () => {
         <UpcomingDeadlines />
 
         {/* Recent activity */}
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
-          <h3 className="text-base font-semibold text-white mb-4">Activité récente</h3>
+        <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
+          <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Activité récente</h3>
           {recentMessages.length === 0 && recentExercises.length === 0 ? (
-            <p className="text-sm text-white/40 text-center py-6">
+            <p className="text-sm text-gray-400 dark:text-white/40 text-center py-6">
               Pas d'activité récente. Commencez à utiliser la plateforme !
             </p>
           ) : (
@@ -70,31 +70,31 @@ export const Dashboard: React.FC = () => {
               {recentMessages.map((msg) => (
                 <div
                   key={msg.id}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-white/3 border border-white/5"
+                  className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5"
                 >
                   <div className="w-7 h-7 rounded-full bg-[#F7931A]/20 flex items-center justify-center flex-shrink-0 text-xs">
                     💬
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-white/40 mb-0.5">Question posée</p>
-                    <p className="text-sm text-white/70 truncate">{msg.content}</p>
+                    <p className="text-xs text-gray-400 dark:text-white/40 mb-0.5">Question posée</p>
+                    <p className="text-sm text-gray-600 dark:text-white/70 truncate">{msg.content}</p>
                   </div>
                 </div>
               ))}
               {recentExercises.map((ex) => (
                 <div
                   key={ex.id}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-white/3 border border-white/5"
+                  className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5"
                 >
                   <div className="w-7 h-7 rounded-full bg-green-400/20 flex items-center justify-center flex-shrink-0 text-xs">
                     ✅
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-white/40 mb-0.5">
+                    <p className="text-xs text-gray-400 dark:text-white/40 mb-0.5">
                       Exercice{' '}
                       {ex.status === 'completed' ? 'terminé' : 'en cours'}
                     </p>
-                    <p className="text-sm text-white/70 truncate">{ex.title}</p>
+                    <p className="text-sm text-gray-600 dark:text-white/70 truncate">{ex.title}</p>
                   </div>
                 </div>
               ))}

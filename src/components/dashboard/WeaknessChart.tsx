@@ -19,8 +19,8 @@ export const WeaknessChart: React.FC = () => {
   }));
 
   return (
-    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5 h-full">
-      <h3 className="text-base font-semibold text-white mb-4">Profil de compétences</h3>
+    <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 h-full shadow-sm dark:shadow-none">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Profil de compétences</h3>
       <ResponsiveContainer width="100%" height={220}>
         <RadarChart data={data}>
           <PolarGrid stroke="rgba(255,255,255,0.1)" />

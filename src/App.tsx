@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Layout } from './components/layout/Layout';
@@ -7,8 +8,19 @@ import { WeaknessDetection } from './pages/WeaknessDetection';
 import { Exercises } from './pages/Exercises';
 import { StudyPlanner } from './pages/StudyPlanner';
 import { Settings } from './pages/Settings';
+import { useStudentStore } from './stores/useStudentStore';
 
 function App() {
+  const { student } = useStudentStore();
+
+  useEffect(() => {
+    if (student.darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [student.darkMode]);
+
   return (
     <AnimatePresence>
       <Layout>

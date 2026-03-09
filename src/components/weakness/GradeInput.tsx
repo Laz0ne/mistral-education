@@ -61,9 +61,9 @@ export const GradeInput: React.FC = () => {
   );
 
   return (
-    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
+    <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
       <div className="flex items-center justify-between mb-5">
-        <h3 className="text-base font-semibold text-white">Mes notes par matière</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white">Mes notes par matière</h3>
         <Button
           variant={saved ? 'secondary' : 'primary'}
           size="sm"
@@ -84,7 +84,7 @@ export const GradeInput: React.FC = () => {
             className="flex items-center gap-3"
           >
             <span className="text-xl w-8 text-center">{getSubjectIcon(grade.subject)}</span>
-            <span className="text-sm font-medium text-white/80 w-24 flex-shrink-0">
+            <span className="text-sm font-medium text-gray-700 dark:text-white/80 w-24 flex-shrink-0">
               {grade.subject}
             </span>
             <div className="flex-1">
@@ -109,7 +109,7 @@ export const GradeInput: React.FC = () => {
             </div>
             <button
               onClick={() => handleRemove(grade.subject)}
-              className="p-1.5 rounded-lg text-white/20 hover:text-red-400 hover:bg-red-400/10 transition-colors"
+              className="p-1.5 rounded-lg text-gray-300 dark:text-white/20 hover:text-red-400 hover:bg-red-400/10 transition-colors"
             >
               <Trash2 className="w-4 h-4" />
             </button>
@@ -118,14 +118,14 @@ export const GradeInput: React.FC = () => {
       </div>
 
       {addableSubjects.length > 0 && (
-        <div className="mt-5 pt-4 border-t border-white/5">
-          <p className="text-xs text-white/40 mb-2">Ajouter une matière :</p>
+        <div className="mt-5 pt-4 border-t border-gray-100 dark:border-white/5">
+          <p className="text-xs text-gray-400 dark:text-white/40 mb-2">Ajouter une matière :</p>
           <div className="flex flex-wrap gap-2">
             {addableSubjects.map((subject) => (
               <button
                 key={subject}
                 onClick={() => handleAddSubject(subject)}
-                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:border-[#F7931A]/40 transition-all"
+                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-white/50 hover:text-gray-900 dark:hover:text-white hover:border-[#F7931A]/40 transition-all"
               >
                 <Plus className="w-3 h-3" />
                 {subject}

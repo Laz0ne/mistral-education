@@ -29,17 +29,17 @@ export const Exercises: React.FC = () => {
           >
             <div className="flex items-center justify-between mb-5">
               <div>
-                <h2 className="text-xl font-bold text-white">{currentExercise.title}</h2>
-                <p className="text-sm text-white/50">{currentExercise.subject}</p>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{currentExercise.title}</h2>
+                <p className="text-sm text-gray-500 dark:text-white/50">{currentExercise.subject}</p>
               </div>
               <button
                 onClick={handleClose}
-                className="p-2 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-colors"
+                className="p-2 rounded-xl text-gray-400 dark:text-white/40 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl">
+            <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl shadow-sm dark:shadow-none">
               <QuizMode exercise={currentExercise} onClose={handleClose} />
             </div>
           </motion.div>
@@ -51,8 +51,8 @@ export const Exercises: React.FC = () => {
             exit={{ opacity: 0, y: -20 }}
           >
             <div className="mb-5">
-              <h2 className="text-xl font-bold text-white">Exercices</h2>
-              <p className="text-sm text-white/50 mt-1">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Exercices</h2>
+              <p className="text-sm text-gray-500 dark:text-white/50 mt-1">
                 Entraînez-vous sur des exercices adaptés à votre niveau.
               </p>
             </div>

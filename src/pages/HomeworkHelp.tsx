@@ -18,7 +18,7 @@ export const HomeworkHelp: React.FC = () => {
           </p>
         </div>
       )}
-      <div className="flex-1 min-h-0 m-4 mt-3 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+      <div className="flex-1 min-h-0 m-4 mt-3 backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-sm dark:shadow-none">
         <ChatInterface />
       </div>
     </div>

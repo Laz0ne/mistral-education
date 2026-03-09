@@ -58,35 +58,35 @@ export const DeadlineForm: React.FC = () => {
   };
 
   return (
-    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
-      <h3 className="text-base font-semibold text-white mb-4">Ajouter un événement</h3>
+    <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Ajouter un événement</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-white/70 mb-1.5">Type</label>
+            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">Type</label>
             <select
               name="type"
               value={form.type}
               onChange={handleChange}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#F7931A]/40"
+              className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-[#F7931A]/40"
             >
               {EVENT_TYPES.map((t) => (
-                <option key={t.value} value={t.value} className="bg-[#1A1A1D]">
+                <option key={t.value} value={t.value} className="bg-white dark:bg-[#1A1A1D]">
                   {t.label}
                 </option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-white/70 mb-1.5">Matière</label>
+            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">Matière</label>
             <select
               name="subject"
               value={form.subject}
               onChange={handleChange}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#F7931A]/40"
+              className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-[#F7931A]/40"
             >
               {SUBJECTS.map((s) => (
-                <option key={s} value={s} className="bg-[#1A1A1D]">
+                <option key={s} value={s} className="bg-white dark:bg-[#1A1A1D]">
                   {s}
                 </option>
               ))}
@@ -122,14 +122,14 @@ export const DeadlineForm: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-white/70 mb-1.5">Description</label>
+          <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">Description</label>
           <textarea
             name="description"
             value={form.description}
             onChange={handleChange}
             rows={2}
             placeholder="Notes supplémentaires..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40 resize-none"
+            className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40 resize-none"
           />
         </div>
 

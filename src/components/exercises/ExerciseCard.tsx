@@ -33,7 +33,7 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, onStart, i
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06 }}
-      className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/[0.08] hover:border-white/20 transition-all group"
+      className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-4 hover:bg-gray-50 dark:hover:bg-white/[0.08] hover:border-gray-300 dark:hover:border-white/20 transition-all group"
     >
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-2.5">
@@ -45,22 +45,22 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, onStart, i
           </div>
           <div>
             <p className="text-xs font-medium" style={{ color }}>{exercise.subject}</p>
-            <h3 className="text-sm font-semibold text-white leading-tight">{exercise.title}</h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">{exercise.title}</h3>
           </div>
         </div>
         <Badge variant={status.variant} size="sm">{status.label}</Badge>
       </div>
 
-      <p className="text-xs text-white/50 mb-3 line-clamp-2">{exercise.description}</p>
+      <p className="text-xs text-gray-500 dark:text-white/50 mb-3 line-clamp-2">{exercise.description}</p>
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Badge variant={diff.variant} size="sm">{diff.label}</Badge>
-          <div className="flex items-center gap-1 text-xs text-white/40">
+          <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-white/40">
             <Clock className="w-3 h-3" />
             <span>{exercise.estimatedTime} min</span>
           </div>
-          <span className="text-xs text-white/30">· {exercise.questions.length} questions</span>
+          <span className="text-xs text-gray-300 dark:text-white/30">· {exercise.questions.length} questions</span>
         </div>
         <button
           onClick={() => onStart(exercise)}

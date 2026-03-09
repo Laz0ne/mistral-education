@@ -61,16 +61,16 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
   const getOptionStyle = (index: number): string => {
     if (answerState === 'pending') {
       return selectedOption === index
-        ? 'border-[#F7931A]/60 bg-[#F7931A]/10 text-white'
-        : 'border-white/10 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/[0.08]';
+        ? 'border-[#F7931A]/60 bg-[#F7931A]/10 text-gray-900 dark:text-white'
+        : 'border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-white/80 hover:border-gray-300 dark:hover:border-white/20 hover:bg-gray-100 dark:hover:bg-white/[0.08]';
     }
     if (index === question?.correctAnswer) {
-      return 'border-green-500/60 bg-green-500/10 text-green-300';
+      return 'border-green-500/60 bg-green-500/10 text-green-700 dark:text-green-300';
     }
     if (index === selectedOption && answerState === 'incorrect') {
-      return 'border-red-500/60 bg-red-500/10 text-red-300';
+      return 'border-red-500/60 bg-red-500/10 text-red-700 dark:text-red-300';
     }
-    return 'border-white/5 bg-white/3 text-white/30';
+    return 'border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/3 text-gray-300 dark:text-white/30';
   };
 
   const optionLetters = ['A', 'B', 'C', 'D'];
@@ -91,10 +91,10 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
           <Trophy className="w-12 h-12 text-white" />
         </motion.div>
 
-        <h2 className="text-2xl font-bold text-white mb-2">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
           {percentage >= 80 ? 'Excellent !' : percentage >= 60 ? 'Bien joué !' : 'Continue d\'apprendre !'}
         </h2>
-        <p className="text-white/60 mb-6">
+        <p className="text-gray-500 dark:text-white/60 mb-6">
           Tu as obtenu {score}/{total} ({percentage}%) dans{' '}
           <span className="text-[#F7931A] font-medium">{exercise.title}</span>
         </p>
@@ -103,7 +103,7 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
           <ProgressBar value={score} max={total} showValue size="lg" />
         </div>
 
-        <p className="text-sm text-white/50 mb-6">
+        <p className="text-sm text-gray-500 dark:text-white/50 mb-6">
           {percentage === 100
             ? '🎉 Score parfait ! Tu maîtrises ce sujet !'
             : percentage >= 80
@@ -132,7 +132,7 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm text-white/50">
+          <span className="text-sm text-gray-500 dark:text-white/50">
             Question {currentIndex + 1} / {total}
           </span>
           <span className="text-sm font-medium text-[#F7931A]">
@@ -151,7 +151,7 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.2 }}
         >
-          <p className="text-lg font-semibold text-white mb-6 leading-relaxed">
+          <p className="text-lg font-semibold text-gray-900 dark:text-white mb-6 leading-relaxed">
             {question.text}
           </p>
 
@@ -168,12 +168,12 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
                 <span
                   className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                     answerState === 'pending'
-                      ? 'bg-white/10'
+                      ? 'bg-gray-200 dark:bg-white/10'
                       : index === question.correctAnswer
-                      ? 'bg-green-500/30 text-green-300'
+                      ? 'bg-green-500/30 text-green-700 dark:text-green-300'
                       : index === selectedOption
-                      ? 'bg-red-500/30 text-red-300'
-                      : 'bg-white/5 text-white/20'
+                      ? 'bg-red-500/30 text-red-700 dark:text-red-300'
+                      : 'bg-gray-100 dark:bg-white/5 text-gray-300 dark:text-white/20'
                   }`}
                 >
                   {optionLetters[index]}
@@ -208,7 +208,7 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
                 >
                   {answerState === 'correct' ? '✓ Bonne réponse !' : '✗ Mauvaise réponse'}
                 </p>
-                <p className="text-sm text-white/70">{question.explanation}</p>
+                <p className="text-sm text-gray-600 dark:text-white/70">{question.explanation}</p>
               </motion.div>
             )}
           </AnimatePresence>

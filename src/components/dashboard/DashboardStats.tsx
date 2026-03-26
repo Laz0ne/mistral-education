@@ -20,13 +20,13 @@ const StatCard: React.FC<StatCardProps> = ({ icon, label, value, sub, color, ind
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: index * 0.1 }}
-    className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5"
+    className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none"
   >
     <div className="flex items-start justify-between">
       <div>
-        <p className="text-sm text-white/50 mb-1">{label}</p>
-        <p className="text-3xl font-bold text-white">{value}</p>
-        {sub && <p className="text-xs text-white/40 mt-1">{sub}</p>}
+        <p className="text-sm text-gray-500 dark:text-white/50 mb-1">{label}</p>
+        <p className="text-3xl font-bold text-gray-900 dark:text-white">{value}</p>
+        {sub && <p className="text-xs text-gray-400 dark:text-white/40 mt-1">{sub}</p>}
       </div>
       <div
         className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"

@@ -25,15 +25,15 @@ export const WeaknessReport: React.FC = () => {
   };
 
   return (
-    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
+    <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
       <div className="flex items-center gap-2 mb-5">
         <Lightbulb className="w-5 h-5 text-[#F7931A]" />
-        <h3 className="text-base font-semibold text-white">Rapport et recommandations</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white">Rapport et recommandations</h3>
       </div>
 
       {/* Overall summary */}
       <div className="p-4 rounded-xl bg-gradient-to-r from-[#F7931A]/10 to-[#FF6B00]/10 border border-[#F7931A]/20 mb-5">
-        <p className="text-sm text-white/80">
+        <p className="text-sm text-gray-700 dark:text-white/80">
           <span className="font-semibold text-[#F7931A]">Moyenne générale : {avg}/20</span>
           {' — '}
           {avg >= 16
@@ -67,7 +67,7 @@ export const WeaknessReport: React.FC = () => {
                 <p className="text-sm font-medium text-red-300 mb-1">
                   {g.subject} — {g.average}/20
                 </p>
-                <p className="text-xs text-white/60">{getRecommendation(g.subject, g.average)}</p>
+                <p className="text-xs text-gray-500 dark:text-white/60">{getRecommendation(g.subject, g.average)}</p>
               </motion.div>
             ))}
           </div>
@@ -93,7 +93,7 @@ export const WeaknessReport: React.FC = () => {
                 <p className="text-sm font-medium text-yellow-300 mb-1">
                   {g.subject} — {g.average}/20
                 </p>
-                <p className="text-xs text-white/60">
+                <p className="text-xs text-gray-500 dark:text-white/60">
                   Tu es sur la bonne voie ! Pour passer au niveau supérieur, fais des exercices réguliers et utilise l'aide aux devoirs pour les points bloquants.
                 </p>
               </motion.div>

@@ -19,9 +19,9 @@ export const ProgressChart: React.FC = () => {
   }));
 
   return (
-    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5 h-full">
+    <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 h-full shadow-sm dark:shadow-none">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base font-semibold text-white">Progression (14 derniers jours)</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white">Progression (14 derniers jours)</h3>
       </div>
       <ResponsiveContainer width="100%" height={220}>
         <AreaChart data={displayData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>

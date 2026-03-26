@@ -63,7 +63,7 @@ export const ExerciseList: React.FC<ExerciseListProps> = ({ onStart }) => {
           className={`text-xs px-3 py-1.5 rounded-full transition-all ${
             selected === v
               ? 'bg-gradient-to-r from-[#F7931A] to-[#FF6B00] text-white'
-              : 'bg-white/5 border border-white/10 text-white/50 hover:text-white hover:border-white/20'
+              : 'bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-white/50 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-white/20'
           }`}
         >
           {labelMap ? (labelMap[v] ?? v) : v}
@@ -75,37 +75,37 @@ export const ExerciseList: React.FC<ExerciseListProps> = ({ onStart }) => {
   return (
     <div>
       {/* Filters */}
-      <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 mb-5 space-y-3">
+      <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-4 mb-5 space-y-3 shadow-sm dark:shadow-none">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-white/30" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Rechercher un exercice..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-4 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40"
+            className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl pl-9 pr-4 py-2 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40"
           />
         </div>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <span className="text-xs text-white/40 w-16 flex-shrink-0">Matière</span>
+            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">Matière</span>
             <FilterChips values={SUBJECTS} selected={subject} onChange={setSubject} />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-white/40 w-16 flex-shrink-0">Niveau</span>
+            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">Niveau</span>
             <FilterChips values={DIFFICULTIES} selected={difficulty} onChange={setDifficulty} labelMap={difficultyLabel} />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-white/40 w-16 flex-shrink-0">Statut</span>
+            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">Statut</span>
             <FilterChips values={STATUSES} selected={status} onChange={setStatus} labelMap={statusLabel} />
           </div>
         </div>
       </div>
 
       {/* Results */}
-      <p className="text-xs text-white/40 mb-3">{filtered.length} exercice(s) trouvé(s)</p>
+      <p className="text-xs text-gray-400 dark:text-white/40 mb-3">{filtered.length} exercice(s) trouvé(s)</p>
       {filtered.length === 0 ? (
-        <div className="text-center py-12 text-white/30">
+        <div className="text-center py-12 text-gray-300 dark:text-white/30">
           <p className="text-4xl mb-3">🔍</p>
           <p className="text-sm">Aucun exercice ne correspond à votre recherche</p>
         </div>

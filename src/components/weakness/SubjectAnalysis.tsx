@@ -38,13 +38,13 @@ export const SubjectAnalysis: React.FC = () => {
   };
 
   return (
-    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
-      <h3 className="text-base font-semibold text-white mb-5">Analyse des performances</h3>
+    <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-5">Analyse des performances</h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Radar Chart */}
         <div>
-          <p className="text-sm text-white/50 mb-3">Profil de compétences</p>
+          <p className="text-sm text-gray-500 dark:text-white/50 mb-3">Profil de compétences</p>
           <ResponsiveContainer width="100%" height={250}>
             <RadarChart data={radarData}>
               <PolarGrid stroke="rgba(255,255,255,0.1)" />
@@ -76,7 +76,7 @@ export const SubjectAnalysis: React.FC = () => {
 
         {/* Bar Chart */}
         <div>
-          <p className="text-sm text-white/50 mb-3">Comparatif des moyennes</p>
+          <p className="text-sm text-gray-500 dark:text-white/50 mb-3">Comparatif des moyennes</p>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={barData} layout="vertical" margin={{ left: 10, right: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
@@ -116,15 +116,15 @@ export const SubjectAnalysis: React.FC = () => {
       </div>
 
       {/* Subject level badges */}
-      <div className="mt-5 pt-4 border-t border-white/5">
-        <p className="text-sm text-white/50 mb-3">Niveaux par matière</p>
+      <div className="mt-5 pt-4 border-t border-gray-100 dark:border-white/5">
+        <p className="text-sm text-gray-500 dark:text-white/50 mb-3">Niveaux par matière</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {subjectGrades.map((g) => (
             <div
               key={g.subject}
-              className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/3 border border-white/5"
+              className="flex items-center justify-between px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5"
             >
-              <span className="text-sm text-white/70">{g.subject}</span>
+              <span className="text-sm text-gray-600 dark:text-white/70">{g.subject}</span>
               <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold" style={{ color: g.color }}>
                   {g.average}

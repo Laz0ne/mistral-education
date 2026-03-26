@@ -20,8 +20,8 @@ export const StudyPlanner: React.FC = () => {
   return (
     <div className="p-6 space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-white">Planning d'études</h2>
-        <p className="text-sm text-white/50 mt-1">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Planning d'études</h2>
+        <p className="text-sm text-gray-500 dark:text-white/50 mt-1">
           Organisez vos devoirs, examens et séances de révision.
         </p>
       </div>
@@ -51,25 +51,25 @@ export const StudyPlanner: React.FC = () => {
               <p className="text-sm font-semibold" style={{ color: selectedEvent.color }}>
                 {typeLabels[selectedEvent.type]}
               </p>
-              <p className="text-base font-bold text-white mt-0.5">{selectedEvent.title}</p>
+              <p className="text-base font-bold text-gray-900 dark:text-white mt-0.5">{selectedEvent.title}</p>
             </div>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-white/50">Matière</span>
-                <span className="text-white">{selectedEvent.subject}</span>
+                <span className="text-gray-500 dark:text-white/50">Matière</span>
+                <span className="text-gray-900 dark:text-white">{selectedEvent.subject}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-white/50">Date</span>
-                <span className="text-white">{formatDate(selectedEvent.date)}</span>
+                <span className="text-gray-500 dark:text-white/50">Date</span>
+                <span className="text-gray-900 dark:text-white">{formatDate(selectedEvent.date)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-white/50">Heure</span>
-                <span className="text-white">{selectedEvent.time}</span>
+                <span className="text-gray-500 dark:text-white/50">Heure</span>
+                <span className="text-gray-900 dark:text-white">{selectedEvent.time}</span>
               </div>
               {selectedEvent.description && (
                 <div>
-                  <span className="text-white/50 block mb-1">Description</span>
-                  <p className="text-white/80 text-xs p-2 rounded-lg bg-white/5">
+                  <span className="text-gray-500 dark:text-white/50 block mb-1">Description</span>
+                  <p className="text-gray-700 dark:text-white/80 text-xs p-2 rounded-lg bg-gray-100 dark:bg-white/5">
                     {selectedEvent.description}
                   </p>
                 </div>

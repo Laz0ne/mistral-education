@@ -54,25 +54,25 @@ export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
+    <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base font-semibold text-white">{weekLabel}</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white">{weekLabel}</h3>
         <div className="flex items-center gap-1">
           <button
             onClick={goToPrevWeek}
-            className="p-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-colors"
+            className="p-1.5 rounded-lg text-gray-400 dark:text-white/40 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={() => setCurrentDate(new Date())}
-            className="px-2.5 py-1 rounded-lg text-xs text-white/50 hover:text-white hover:bg-white/5 transition-colors"
+            className="px-2.5 py-1 rounded-lg text-xs text-gray-500 dark:text-white/50 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
           >
             Aujourd'hui
           </button>
           <button
             onClick={goToNextWeek}
-            className="p-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-colors"
+            className="p-1.5 rounded-lg text-gray-400 dark:text-white/40 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -81,7 +81,7 @@ export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
 
       <div className="grid grid-cols-7 gap-1">
         {DAYS_FR.map((day) => (
-          <div key={day} className="text-center text-xs font-medium text-white/40 py-2">
+          <div key={day} className="text-center text-xs font-medium text-gray-400 dark:text-white/40 py-2">
             {day}
           </div>
         ))}
@@ -97,12 +97,12 @@ export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
               className={`min-h-20 rounded-xl p-1.5 border transition-colors ${
                 isToday
                   ? 'border-[#F7931A]/40 bg-[#F7931A]/5'
-                  : 'border-white/5 bg-white/3 hover:bg-white/5'
+                  : 'border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/3 hover:bg-gray-100 dark:hover:bg-white/5'
               }`}
             >
               <p
                 className={`text-xs font-semibold mb-1 text-center ${
-                  isToday ? 'text-[#F7931A]' : 'text-white/50'
+                  isToday ? 'text-[#F7931A]' : 'text-gray-400 dark:text-white/50'
                 }`}
               >
                 {date.getDate()}
@@ -126,7 +126,7 @@ export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
                   </motion.button>
                 ))}
                 {dayEvents.length > 3 && (
-                  <p className="text-xs text-white/30 text-center">+{dayEvents.length - 3}</p>
+                  <p className="text-xs text-gray-300 dark:text-white/30 text-center">+{dayEvents.length - 3}</p>
                 )}
               </div>
             </div>

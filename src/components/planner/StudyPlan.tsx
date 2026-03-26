@@ -35,8 +35,8 @@ export const StudyPlan: React.FC = () => {
               <BookOpen className="w-6 h-6 text-white" />
             </div>
             <div>
-              <p className="text-sm text-white/60">Prochain examen</p>
-              <p className="text-base font-semibold text-white">{nextExam.title}</p>
+              <p className="text-sm text-gray-500 dark:text-white/60">Prochain examen</p>
+              <p className="text-base font-semibold text-gray-900 dark:text-white">{nextExam.title}</p>
               <p className="text-sm font-bold text-[#F7931A]">
                 {daysToExam === 0 ? "Aujourd'hui !" : daysToExam === 1 ? 'Demain !' : `Dans ${daysToExam} jours`}
               </p>
@@ -46,11 +46,11 @@ export const StudyPlan: React.FC = () => {
       )}
 
       {/* Upcoming tasks */}
-      <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
-        <h3 className="text-base font-semibold text-white mb-4">Plan d'études</h3>
+      <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Plan d'études</h3>
 
         {upcomingEvents.length === 0 ? (
-          <p className="text-sm text-white/40 text-center py-6">
+          <p className="text-sm text-gray-400 dark:text-white/40 text-center py-6">
             Aucun événement à venir. Ajoutez des échéances pour planifier vos révisions 📅
           </p>
         ) : (
@@ -67,10 +67,10 @@ export const StudyPlan: React.FC = () => {
                   transition={{ delay: i * 0.05 }}
                   className={`flex items-start gap-3 p-3 rounded-xl border transition-colors ${
                     event.completed
-                      ? 'border-white/5 bg-white/3 opacity-50'
+                      ? 'border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/3 opacity-50'
                       : isUrgent
                       ? 'border-red-500/20 bg-red-500/5'
-                      : 'border-white/5 bg-white/3 hover:bg-white/5'
+                      : 'border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/3 hover:bg-gray-100 dark:hover:bg-white/5'
                   }`}
                 >
                   <button
@@ -80,7 +80,7 @@ export const StudyPlan: React.FC = () => {
                     {event.completed ? (
                       <CheckSquare className="w-5 h-5 text-[#F7931A]" />
                     ) : (
-                      <Square className="w-5 h-5 text-white/30" />
+                      <Square className="w-5 h-5 text-gray-300 dark:text-white/30" />
                     )}
                   </button>
 
@@ -92,20 +92,20 @@ export const StudyPlan: React.FC = () => {
                       >
                         {typeLabels[event.type]}
                       </span>
-                      <span className="text-xs text-white/40">{event.subject}</span>
+                      <span className="text-xs text-gray-400 dark:text-white/40">{event.subject}</span>
                     </div>
                     <p
                       className={`text-sm font-medium ${
-                        event.completed ? 'line-through text-white/40' : 'text-white'
+                        event.completed ? 'line-through text-gray-400 dark:text-white/40' : 'text-gray-900 dark:text-white'
                       }`}
                     >
                       {event.title}
                     </p>
                     {event.description && (
-                      <p className="text-xs text-white/40 truncate mt-0.5">{event.description}</p>
+                      <p className="text-xs text-gray-400 dark:text-white/40 truncate mt-0.5">{event.description}</p>
                     )}
                     <div className="flex items-center gap-2 mt-1">
-                      <div className="flex items-center gap-1 text-xs text-white/40">
+                      <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-white/40">
                         <Clock className="w-3 h-3" />
                         {formatDate(event.date)} à {event.time}
                       </div>
@@ -118,7 +118,7 @@ export const StudyPlan: React.FC = () => {
                               ? 'text-orange-400'
                               : days <= 5
                               ? 'text-yellow-400'
-                              : 'text-white/40'
+                              : 'text-gray-400 dark:text-white/40'
                           }`}
                         >
                           {days === 0 ? "Aujourd'hui" : days === 1 ? 'Demain' : `Dans ${days}j`}
@@ -129,7 +129,7 @@ export const StudyPlan: React.FC = () => {
 
                   <button
                     onClick={() => deleteEvent(event.id)}
-                    className="p-1 rounded-lg text-white/20 hover:text-red-400 hover:bg-red-400/10 transition-colors flex-shrink-0"
+                    className="p-1 rounded-lg text-gray-300 dark:text-white/20 hover:text-red-400 hover:bg-red-400/10 transition-colors flex-shrink-0"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -142,8 +142,8 @@ export const StudyPlan: React.FC = () => {
 
       {/* Past events */}
       {pastEvents.length > 0 && (
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5">
-          <h3 className="text-sm font-semibold text-white/50 mb-3">Historique récent</h3>
+        <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
+          <h3 className="text-sm font-semibold text-gray-400 dark:text-white/50 mb-3">Historique récent</h3>
           <div className="space-y-2">
             {pastEvents.map((event) => (
               <div
@@ -154,11 +154,11 @@ export const StudyPlan: React.FC = () => {
                   className="w-2 h-2 rounded-full flex-shrink-0"
                   style={{ backgroundColor: event.color }}
                 />
-                <span className="text-sm text-white flex-1">{event.title}</span>
-                <span className="text-xs text-white/40">{formatDate(event.date)}</span>
+                <span className="text-sm text-gray-900 dark:text-white flex-1">{event.title}</span>
+                <span className="text-xs text-gray-400 dark:text-white/40">{formatDate(event.date)}</span>
                 <button
                   onClick={() => deleteEvent(event.id)}
-                  className="p-1 rounded text-white/20 hover:text-red-400 transition-colors"
+                  className="p-1 rounded text-gray-300 dark:text-white/20 hover:text-red-400 transition-colors"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>

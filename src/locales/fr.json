@@ -1,0 +1,242 @@
+{
+  "app": {
+    "title": "Mistral Education",
+    "name": "Mistral",
+    "subtitle": "Education"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "homework": "Aide aux devoirs",
+    "weaknesses": "Détection des points faibles",
+    "weaknessesShort": "Points faibles",
+    "exercises": "Exercices",
+    "planner": "Planning d'études",
+    "plannerShort": "Planning",
+    "settings": "Paramètres"
+  },
+  "common": {
+    "score": "Score",
+    "average": "Moyenne",
+    "today": "Aujourd'hui",
+    "tomorrow": "Demain",
+    "inDays": "Dans {{count}} jours",
+    "daysShort": "{{count}}j",
+    "save": "Enregistrer",
+    "saved": "Enregistré !",
+    "delete": "Supprimer",
+    "import": "Importer",
+    "export": "Exporter",
+    "minutes": "min",
+    "questionCount": "{{count}} question",
+    "questionCount_plural": "{{count}} questions"
+  },
+  "subjects": {
+    "Maths": "Maths",
+    "Français": "Français",
+    "Histoire": "Histoire",
+    "Physique": "Physique",
+    "Anglais": "Anglais",
+    "SVT": "SVT",
+    "Philosophie": "Philosophie",
+    "SES": "SES",
+    "Informatique": "Informatique",
+    "Autre": "Autre"
+  },
+  "levels": {
+    "needs-improvement": "À améliorer",
+    "medium": "Moyen",
+    "good": "Bon niveau"
+  },
+  "status": {
+    "todo": "À faire",
+    "in-progress": "En cours",
+    "completed": "Terminé"
+  },
+  "difficulty": {
+    "easy": "Facile",
+    "medium": "Moyen",
+    "hard": "Difficile",
+    "all": "Toutes"
+  },
+  "dashboard": {
+    "greeting": "Bonjour, {{name}} 👋",
+    "recentActivity": "Activité récente",
+    "noActivity": "Pas d'activité récente. Commencez à utiliser la plateforme !",
+    "questionAsked": "Question posée",
+    "exerciseState": "Exercice {{state}}",
+    "progress": "Progression (14 derniers jours)",
+    "skillsProfile": "Profil de compétences",
+    "upcomingDeadlines": "Prochaines échéances",
+    "noDeadlines": "Aucune échéance à venir 🎉"
+  },
+  "stats": {
+    "questionsAsked": "Questions posées",
+    "questionsSub": "à Mistral AI",
+    "exercisesCompleted": "Exercices complétés",
+    "exercisesSub": "exercices réussis",
+    "average": "Moyenne générale",
+    "excellent": "Excellent !",
+    "good": "Bien !",
+    "improve": "À améliorer",
+    "streak": "Jours de streak",
+    "streakPositive": "continuez comme ça !",
+    "streakZero": "commencez aujourd'hui !"
+  },
+  "homework": {
+    "demoMode": "Mode démonstration — Configurez votre clé API Mistral dans les {{settingsLink}} pour des réponses personnalisées.",
+    "error": "Désolé, une erreur s'est produite. Vérifiez votre clé API dans les paramètres ou réessayez dans quelques instants."
+  },
+  "chat": {
+    "suggestions": "Suggestions :",
+    "inputPlaceholder": "Pose ta question ici...",
+    "clearConversation": "Effacer la conversation",
+    "sendHint": "Entrée pour envoyer · Shift+Entrée pour nouvelle ligne",
+    "quick": {
+      "fractions": "Explique-moi les fractions",
+      "quadratic": "Comment résoudre une équation du 2nd degré ?",
+      "revolution": "Résume la Révolution française",
+      "photosynthesis": "C'est quoi la photosynthèse ?",
+      "presentPerfect": "Explique le Present Perfect"
+    },
+    "welcome": "Bonjour ! Je suis ton assistant Mistral Education 🎓. Comment puis-je t'aider aujourd'hui ? Tu peux me poser des questions sur tes cours, demander des explications ou me parler de tes difficultés."
+  },
+  "weakness": {
+    "title": "Détection des points faibles",
+    "subtitle": "Renseignez vos notes pour obtenir une analyse personnalisée et des recommandations.",
+    "gradesTitle": "Mes notes par matière",
+    "addSubject": "Ajouter une matière :",
+    "analysisTitle": "Analyse des performances",
+    "comparison": "Comparatif des moyennes",
+    "levelsBySubject": "Niveaux par matière",
+    "reportTitle": "Rapport et recommandations",
+    "globalAverage": "Moyenne générale : {{avg}}/20",
+    "priority": "À améliorer en priorité",
+    "toConsolidate": "À consolider",
+    "strengths": "Points forts",
+    "feedback": {
+      "excellent": "Excellent travail ! Tu es sur la bonne voie pour d'excellents résultats.",
+      "veryGood": "Très bon niveau ! Continue sur cette lancée et consolide tes acquis.",
+      "good": "Bon niveau global. Il reste quelques domaines à améliorer.",
+      "fair": "Niveau passable. Un effort régulier te permettra de progresser significativement.",
+      "needsWork": "Des efforts importants sont nécessaires. Sois courageux, chaque progrès compte !"
+    },
+    "mediumRec": "Tu es sur la bonne voie ! Pour passer au niveau supérieur, fais des exercices réguliers et utilise l'aide aux devoirs pour les points bloquants."
+  },
+  "exercises": {
+    "title": "Exercices",
+    "subtitle": "Entraînez-vous sur des exercices adaptés à votre niveau.",
+    "search": "Rechercher un exercice...",
+    "subject": "Matière",
+    "level": "Niveau",
+    "status": "Statut",
+    "all": "Tous",
+    "results": "{{count}} exercice(s) trouvé(s)",
+    "none": "Aucun exercice ne correspond à votre recherche",
+    "start": "Commencer",
+    "redo": "Refaire",
+    "restart": "Recommencer",
+    "back": "Retour aux exercices",
+    "question": "Question {{current}} / {{total}}",
+    "score": "{{count}} bonne(s) réponse(s)",
+    "correct": "✓ Bonne réponse !",
+    "incorrect": "✗ Mauvaise réponse",
+    "seeResults": "Voir les résultats",
+    "nextQuestion": "Question suivante",
+    "excellent": "Excellent !",
+    "wellDone": "Bien joué !",
+    "keepLearning": "Continue d'apprendre !",
+    "result": "Tu as obtenu {{score}}/{{total}} ({{percentage}}%) dans {{title}}",
+    "perfect": "🎉 Score parfait ! Tu maîtrises ce sujet !",
+    "veryGood": "🌟 Très bon résultat ! Quelques points à revoir.",
+    "good": "📚 Bon travail ! Revois les questions manquées.",
+    "encourage": "💪 Ne te décourage pas ! La pratique mène à la perfection."
+  },
+  "planner": {
+    "title": "Planning d'études",
+    "subtitle": "Organisez vos devoirs, examens et séances de révision.",
+    "todayButton": "Aujourd'hui",
+    "eventDetail": "Détail de l'événement",
+    "type": "Type",
+    "subject": "Matière",
+    "date": "Date",
+    "time": "Heure",
+    "description": "Description",
+    "markDone": "Marquer terminé",
+    "markUndone": "Marquer incomplet",
+    "addEvent": "Ajouter un événement",
+    "addEventBtn": "Ajouter l'événement",
+    "eventAdded": "Événement ajouté !",
+    "titleLabel": "Titre",
+    "titlePlaceholder": "Ex: Contrôle sur les fonctions",
+    "descriptionPlaceholder": "Notes supplémentaires...",
+    "nextExam": "Prochain examen",
+    "studyPlan": "Plan d'études",
+    "noEvents": "Aucun événement à venir. Ajoutez des échéances pour planifier vos révisions 📅",
+    "history": "Historique récent",
+    "typeLabels": {
+      "exam": "Examen",
+      "homework": "Devoir",
+      "revision": "Révision"
+    },
+    "typeBadges": {
+      "exam": "📝 Examen",
+      "homework": "📋 Devoir",
+      "revision": "📚 Révision"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "subtitle": "Personnalisez votre expérience Mistral Education.",
+    "profile": "Profil",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "grade": "Classe",
+    "school": "Établissement",
+    "schoolPlaceholder": "Nom de votre lycée/collège",
+    "subjects": "Matières suivies",
+    "api": "Clé API Mistral",
+    "apiHelp": "Obtenez votre clé API sur {{link}}. Sans clé, des réponses de démonstration seront utilisées.",
+    "apiPlaceholder": "sk-...",
+    "appearance": "Apparence",
+    "darkMode": "Mode sombre",
+    "darkModeDesc": "Thème foncé par défaut",
+    "saved": "Paramètres enregistrés !",
+    "save": "Enregistrer les paramètres",
+    "data": "Gestion des données",
+    "reset": "Réinitialiser toutes les données",
+    "resetWarning": "La réinitialisation supprimera définitivement toutes vos données locales.",
+    "clearHistory": "Effacer l'historique des conversations",
+    "invalidFile": "Fichier invalide",
+    "resetConfirm": "Êtes-vous sûr de vouloir réinitialiser toutes vos données ? Cette action est irréversible."
+  },
+  "grades": {
+    "6ème": "6ème",
+    "5ème": "5ème",
+    "4ème": "4ème",
+    "3ème": "3ème",
+    "Seconde": "Seconde",
+    "Première": "Première",
+    "Terminale": "Terminale"
+  },
+  "mistral": {
+    "systemPrompt": "Tu es un assistant éducatif Mistral Education. Tu aides les élèves à comprendre leurs cours. Tu donnes des explications claires, pédagogiques et adaptées au niveau lycée/collège. Tu ne donnes jamais directement les réponses mais tu guides l'élève vers la compréhension. Réponds toujours en français.",
+    "apiError": "Erreur API Mistral: {{message}}",
+    "fallback": "Je suis désolé, je n'ai pas pu générer une réponse. Réessaie dans quelques instants.",
+    "topic": {
+      "math": "Les mathématiques, c'est comme un puzzle ! Pour les fractions, rappelle-toi que le numérateur est en haut et le dénominateur en bas. Pour additionner des fractions, il faut d'abord les mettre au même dénominateur. Par exemple : 1/2 + 1/3 = 3/6 + 2/6 = 5/6. Est-ce que tu veux qu'on travaille sur un exemple précis ensemble ?",
+      "history": "L'histoire est fascinante ! Pour bien retenir les événements historiques, je te conseille de les contextualiser : qui ? quoi ? quand ? pourquoi ? Crée une frise chronologique dans ta tête. Quel aspect de ce sujet te pose problème ?",
+      "french": "La langue française est riche ! Pour la conjugaison, identifie d'abord le groupe du verbe (1er, 2ème ou 3ème groupe), puis applique les terminaisons correspondantes. La pratique régulière est la clé. Quel temps ou mode te pose problème ?",
+      "physics": "En physique-chimie, la compréhension des unités est essentielle. Avant d'appliquer une formule, vérifie que toutes tes grandeurs sont dans les bonnes unités du SI. Ensuite, isole la variable cherchée. Sur quel concept travailles-tu ?",
+      "english": "Pour progresser en anglais, l'immersion est très efficace ! Écoute des podcasts, des séries en VO. Pour la grammaire, mémorise les structures de phrases plutôt que les règles abstraites. Qu'est-ce qui te pose le plus de difficultés ?"
+    },
+    "mockResponses": [
+      "Bonne question ! Pour comprendre ce concept, partons d'un exemple concret. Réfléchis d'abord à ce que tu sais déjà sur ce sujet. Qu'est-ce qui te semble flou dans la définition ?",
+      "Je vais t'aider à y voir plus clair ! Ce sujet peut sembler complexe au premier abord, mais en le décomposant étape par étape, tu vas comprendre. Quelle partie te pose le plus de difficultés ?",
+      "Excellente réflexion ! Pour maîtriser ce concept, il est important de bien poser les bases. Voici comment je t'invite à aborder le problème : commence par identifier les données dont tu disposes, puis cherche ce qu'on te demande de trouver.",
+      "C'est un sujet que beaucoup d'élèves trouvent difficile, mais avec la bonne méthode, ça devient accessible ! La clé est de procéder méthodiquement. Dis-moi, est-ce que tu as déjà essayé de l'aborder d'une certaine façon ?",
+      "Très bonne question ! Pour t'expliquer cela, imagine une situation de la vie quotidienne : c'est comme quand tu dois... Cela te parle-t-il ? N'hésite pas à me demander plus de détails si tu veux qu'on approfondisse ensemble.",
+      "Je vois que tu travailles sérieusement, c'est super ! Pour ce type de problème, voici une méthode en 3 étapes : 1) Lis attentivement l'énoncé et identifie les données 2) Cherche les formules ou règles applicables 3) Applique-les en vérifiant chaque étape. Quelle étape te semble la plus difficile ?",
+      "Bonne initiative de poser la question ! La compréhension profonde d'un concept passe par la pratique. Je te conseille de faire des exercices progressifs : commence par les cas simples avant d'attaquer les cas complexes. Tu veux qu'on travaille ensemble sur un exemple ?"
+    ]
+  }
+}

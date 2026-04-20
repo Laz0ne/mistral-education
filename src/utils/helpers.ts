@@ -1,8 +1,10 @@
 import { SubjectGrade } from '../types';
+import i18n from '../i18n';
 
 export function formatDate(date: Date | string): string {
   const d = typeof date === 'string' ? new Date(date) : date;
-  return d.toLocaleDateString('fr-FR', {
+  const locale = i18n.resolvedLanguage === 'en' ? 'en-US' : 'fr-FR';
+  return d.toLocaleDateString(locale, {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -58,12 +60,15 @@ export function getLevelFromScore(score: number): SubjectGrade['level'] {
 }
 
 export function getLevelLabel(level: string): string {
-  const labels: Record<string, string> = {
-    'needs-improvement': 'À améliorer',
-    medium: 'Moyen',
-    good: 'Bon niveau',
-  };
-  return labels[level] ?? level;
+  return i18n.t(`levels.${level}`, { defaultValue: level });
+}
+
+export function getSubjectLabel(subject: string): string {
+  return i18n.t(`subjects.${subject}`, { defaultValue: subject });
+}
+
+export function getGradeLabel(grade: string): string {
+  return i18n.t(`grades.${grade}`, { defaultValue: grade });
 }
 
 export function getLevelColor(level: string): string {

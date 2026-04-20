@@ -2,16 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckSquare, Square, Trash2, Clock, BookOpen } from 'lucide-react';
 import { usePlannerStore } from '../../stores/usePlannerStore';
-import { getDaysUntil, formatDate } from '../../utils/helpers';
-
-const typeLabels: Record<string, string> = {
-  exam: '📝 Examen',
-  homework: '📋 Devoir',
-  revision: '📚 Révision',
-};
+import { getDaysUntil, formatDate, getSubjectLabel } from '../../utils/helpers';
+import { useTranslation } from 'react-i18next';
 
 export const StudyPlan: React.FC = () => {
   const { events, toggleComplete, deleteEvent } = usePlannerStore();
+  const { t } = useTranslation();
 
   const upcomingEvents = events
     .filter((e) => getDaysUntil(e.date) >= 0)
@@ -35,10 +31,10 @@ export const StudyPlan: React.FC = () => {
               <BookOpen className="w-6 h-6 text-white" />
             </div>
             <div>
-              <p className="text-sm text-gray-500 dark:text-white/60">Prochain examen</p>
+              <p className="text-sm text-gray-500 dark:text-white/60">{t('planner.nextExam')}</p>
               <p className="text-base font-semibold text-gray-900 dark:text-white">{nextExam.title}</p>
               <p className="text-sm font-bold text-[#F7931A]">
-                {daysToExam === 0 ? "Aujourd'hui !" : daysToExam === 1 ? 'Demain !' : `Dans ${daysToExam} jours`}
+                {daysToExam === 0 ? `${t('common.today')} !` : daysToExam === 1 ? `${t('common.tomorrow')} !` : t('common.inDays', { count: daysToExam })}
               </p>
             </div>
           </div>
@@ -47,11 +43,11 @@ export const StudyPlan: React.FC = () => {
 
       {/* Upcoming tasks */}
       <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
-        <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Plan d'études</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">{t('planner.studyPlan')}</h3>
 
         {upcomingEvents.length === 0 ? (
           <p className="text-sm text-gray-400 dark:text-white/40 text-center py-6">
-            Aucun événement à venir. Ajoutez des échéances pour planifier vos révisions 📅
+            {t('planner.noEvents')}
           </p>
         ) : (
           <div className="space-y-2">
@@ -90,9 +86,9 @@ export const StudyPlan: React.FC = () => {
                         className="text-xs font-medium"
                         style={{ color: event.color }}
                       >
-                        {typeLabels[event.type]}
+                        {t(`planner.typeBadges.${event.type}`)}
                       </span>
-                      <span className="text-xs text-gray-400 dark:text-white/40">{event.subject}</span>
+                      <span className="text-xs text-gray-400 dark:text-white/40">{getSubjectLabel(event.subject)}</span>
                     </div>
                     <p
                       className={`text-sm font-medium ${
@@ -107,7 +103,7 @@ export const StudyPlan: React.FC = () => {
                     <div className="flex items-center gap-2 mt-1">
                       <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-white/40">
                         <Clock className="w-3 h-3" />
-                        {formatDate(event.date)} à {event.time}
+                        {formatDate(event.date)} · {event.time}
                       </div>
                       {!event.completed && (
                         <span
@@ -121,7 +117,7 @@ export const StudyPlan: React.FC = () => {
                               : 'text-gray-400 dark:text-white/40'
                           }`}
                         >
-                          {days === 0 ? "Aujourd'hui" : days === 1 ? 'Demain' : `Dans ${days}j`}
+                          {days === 0 ? t('common.today') : days === 1 ? t('common.tomorrow') : t('common.daysShort', { count: days })}
                         </span>
                       )}
                     </div>
@@ -143,7 +139,7 @@ export const StudyPlan: React.FC = () => {
       {/* Past events */}
       {pastEvents.length > 0 && (
         <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
-          <h3 className="text-sm font-semibold text-gray-400 dark:text-white/50 mb-3">Historique récent</h3>
+          <h3 className="text-sm font-semibold text-gray-400 dark:text-white/50 mb-3">{t('planner.history')}</h3>
           <div className="space-y-2">
             {pastEvents.map((event) => (
               <div

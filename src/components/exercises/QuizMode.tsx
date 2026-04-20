@@ -5,6 +5,7 @@ import { Exercise } from '../../types';
 import { useExerciseStore } from '../../stores/useExerciseStore';
 import { ProgressBar } from '../ui/ProgressBar';
 import { Button } from '../ui/Button';
+import { useTranslation } from 'react-i18next';
 
 interface QuizModeProps {
   exercise: Exercise;
@@ -14,6 +15,7 @@ interface QuizModeProps {
 type AnswerState = 'pending' | 'correct' | 'incorrect';
 
 export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [answerState, setAnswerState] = useState<AnswerState>('pending');
@@ -92,11 +94,10 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
         </motion.div>
 
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-          {percentage >= 80 ? 'Excellent !' : percentage >= 60 ? 'Bien joué !' : 'Continue d\'apprendre !'}
+          {percentage >= 80 ? t('exercises.excellent') : percentage >= 60 ? t('exercises.wellDone') : t('exercises.keepLearning')}
         </h2>
         <p className="text-gray-500 dark:text-white/60 mb-6">
-          Tu as obtenu {score}/{total} ({percentage}%) dans{' '}
-          <span className="text-[#F7931A] font-medium">{exercise.title}</span>
+          {t('exercises.result', { score, total, percentage, title: exercise.title })}
         </p>
 
         <div className="w-full max-w-xs mb-6">
@@ -105,20 +106,20 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
 
         <p className="text-sm text-gray-500 dark:text-white/50 mb-6">
           {percentage === 100
-            ? '🎉 Score parfait ! Tu maîtrises ce sujet !'
+            ? t('exercises.perfect')
             : percentage >= 80
-            ? '🌟 Très bon résultat ! Quelques points à revoir.'
+            ? t('exercises.veryGood')
             : percentage >= 60
-            ? '📚 Bon travail ! Revois les questions manquées.'
-            : '💪 Ne te décourage pas ! La pratique mène à la perfection.'}
+            ? t('exercises.good')
+            : t('exercises.encourage')}
         </p>
 
         <div className="flex gap-3">
           <Button variant="secondary" icon={<RotateCcw className="w-4 h-4" />} onClick={handleRestart}>
-            Recommencer
+            {t('exercises.restart')}
           </Button>
           <Button variant="primary" onClick={onClose}>
-            Retour aux exercices
+            {t('exercises.back')}
           </Button>
         </div>
       </motion.div>
@@ -133,10 +134,10 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm text-gray-500 dark:text-white/50">
-            Question {currentIndex + 1} / {total}
+            {t('exercises.question', { current: currentIndex + 1, total })}
           </span>
           <span className="text-sm font-medium text-[#F7931A]">
-            {score} bonne(s) réponse(s)
+            {t('exercises.score', { count: score })}
           </span>
         </div>
         <ProgressBar value={currentIndex + 1} max={total} />
@@ -206,7 +207,7 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
                     answerState === 'correct' ? 'text-green-400' : 'text-red-400'
                   }`}
                 >
-                  {answerState === 'correct' ? '✓ Bonne réponse !' : '✗ Mauvaise réponse'}
+                  {answerState === 'correct' ? t('exercises.correct') : t('exercises.incorrect')}
                 </p>
                 <p className="text-sm text-gray-600 dark:text-white/70">{question.explanation}</p>
               </motion.div>
@@ -225,8 +226,8 @@ export const QuizMode: React.FC<QuizModeProps> = ({ exercise, onClose }) => {
                 icon={<ArrowRight className="w-4 h-4" />}
                 onClick={handleNext}
               >
-                {isLast ? 'Voir les résultats' : 'Question suivante'}
-              </Button>
+                 {isLast ? t('exercises.seeResults') : t('exercises.nextQuestion')}
+               </Button>
             </motion.div>
           )}
         </motion.div>

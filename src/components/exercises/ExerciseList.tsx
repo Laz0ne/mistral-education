@@ -3,33 +3,24 @@ import { Search } from 'lucide-react';
 import { ExerciseCard } from './ExerciseCard';
 import { useExerciseStore } from '../../stores/useExerciseStore';
 import { Exercise } from '../../types';
+import { useTranslation } from 'react-i18next';
+import { getSubjectLabel } from '../../utils/helpers';
 
 interface ExerciseListProps {
   onStart: (exercise: Exercise) => void;
 }
 
-const SUBJECTS = ['Tous', 'Maths', 'Français', 'Histoire', 'Physique', 'Anglais', 'SVT'];
-const DIFFICULTIES = ['Toutes', 'easy', 'medium', 'hard'];
-const STATUSES = ['Tous', 'todo', 'in-progress', 'completed'];
-
-const difficultyLabel: Record<string, string> = {
-  easy: 'Facile',
-  medium: 'Moyen',
-  hard: 'Difficile',
-};
-
-const statusLabel: Record<string, string> = {
-  todo: 'À faire',
-  'in-progress': 'En cours',
-  completed: 'Terminé',
-};
+const SUBJECTS = ['all', 'Maths', 'Français', 'Histoire', 'Physique', 'Anglais', 'SVT'];
+const DIFFICULTIES = ['all', 'easy', 'medium', 'hard'];
+const STATUSES = ['all', 'todo', 'in-progress', 'completed'];
 
 export const ExerciseList: React.FC<ExerciseListProps> = ({ onStart }) => {
   const { exercises } = useExerciseStore();
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
-  const [subject, setSubject] = useState('Tous');
-  const [difficulty, setDifficulty] = useState('Toutes');
-  const [status, setStatus] = useState('Tous');
+  const [subject, setSubject] = useState('all');
+  const [difficulty, setDifficulty] = useState('all');
+  const [status, setStatus] = useState('all');
 
   const filtered = useMemo(() => {
     return exercises.filter((e) => {
@@ -37,9 +28,9 @@ export const ExerciseList: React.FC<ExerciseListProps> = ({ onStart }) => {
         search === '' ||
         e.title.toLowerCase().includes(search.toLowerCase()) ||
         e.subject.toLowerCase().includes(search.toLowerCase());
-      const matchSubject = subject === 'Tous' || e.subject === subject;
-      const matchDifficulty = difficulty === 'Toutes' || e.difficulty === difficulty;
-      const matchStatus = status === 'Tous' || e.status === status;
+      const matchSubject = subject === 'all' || e.subject === subject;
+      const matchDifficulty = difficulty === 'all' || e.difficulty === difficulty;
+      const matchStatus = status === 'all' || e.status === status;
       return matchSearch && matchSubject && matchDifficulty && matchStatus;
     });
   }, [exercises, search, subject, difficulty, status]);
@@ -66,7 +57,7 @@ export const ExerciseList: React.FC<ExerciseListProps> = ({ onStart }) => {
               : 'bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-white/50 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-white/20'
           }`}
         >
-          {labelMap ? (labelMap[v] ?? v) : v}
+          {labelMap ? (labelMap[v] ?? v) : v === 'all' ? t('exercises.all') : getSubjectLabel(v)}
         </button>
       ))}
     </div>
@@ -82,32 +73,42 @@ export const ExerciseList: React.FC<ExerciseListProps> = ({ onStart }) => {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Rechercher un exercice..."
+            placeholder={t('exercises.search')}
             className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl pl-9 pr-4 py-2 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40"
           />
         </div>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">Matière</span>
+            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">{t('exercises.subject')}</span>
             <FilterChips values={SUBJECTS} selected={subject} onChange={setSubject} />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">Niveau</span>
-            <FilterChips values={DIFFICULTIES} selected={difficulty} onChange={setDifficulty} labelMap={difficultyLabel} />
+            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">{t('exercises.level')}</span>
+            <FilterChips
+              values={DIFFICULTIES}
+              selected={difficulty}
+              onChange={setDifficulty}
+              labelMap={{ all: t('difficulty.all'), easy: t('difficulty.easy'), medium: t('difficulty.medium'), hard: t('difficulty.hard') }}
+            />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">Statut</span>
-            <FilterChips values={STATUSES} selected={status} onChange={setStatus} labelMap={statusLabel} />
+            <span className="text-xs text-gray-400 dark:text-white/40 w-16 flex-shrink-0">{t('exercises.status')}</span>
+            <FilterChips
+              values={STATUSES}
+              selected={status}
+              onChange={setStatus}
+              labelMap={{ all: t('exercises.all'), todo: t('status.todo'), 'in-progress': t('status.in-progress'), completed: t('status.completed') }}
+            />
           </div>
         </div>
       </div>
 
       {/* Results */}
-      <p className="text-xs text-gray-400 dark:text-white/40 mb-3">{filtered.length} exercice(s) trouvé(s)</p>
+      <p className="text-xs text-gray-400 dark:text-white/40 mb-3">{t('exercises.results', { count: filtered.length })}</p>
       {filtered.length === 0 ? (
         <div className="text-center py-12 text-gray-300 dark:text-white/30">
           <p className="text-4xl mb-3">🔍</p>
-          <p className="text-sm">Aucun exercice ne correspond à votre recherche</p>
+          <p className="text-sm">{t('exercises.none')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

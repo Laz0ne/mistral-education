@@ -8,19 +8,22 @@ import {
   Tooltip,
 } from 'recharts';
 import { useStudentStore } from '../../stores/useStudentStore';
+import { useTranslation } from 'react-i18next';
+import { getSubjectLabel } from '../../utils/helpers';
 
 export const WeaknessChart: React.FC = () => {
   const { subjectGrades } = useStudentStore();
+  const { t } = useTranslation();
 
   const data = subjectGrades.map((g) => ({
-    subject: g.subject,
+    subject: getSubjectLabel(g.subject),
     score: g.average,
     fullMark: 20,
   }));
 
   return (
     <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 h-full shadow-sm dark:shadow-none">
-      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Profil de compétences</h3>
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">{t('dashboard.skillsProfile')}</h3>
       <ResponsiveContainer width="100%" height={220}>
         <RadarChart data={data}>
           <PolarGrid stroke="rgba(255,255,255,0.1)" />
@@ -29,7 +32,7 @@ export const WeaknessChart: React.FC = () => {
             tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }}
           />
           <Radar
-            name="Score"
+            name={t('common.score')}
             dataKey="score"
             stroke="#F7931A"
             fill="#F7931A"
@@ -44,7 +47,7 @@ export const WeaknessChart: React.FC = () => {
               color: 'white',
               fontSize: '12px',
             }}
-            formatter={(value: number) => [`${value}/20`, 'Score']}
+            formatter={(value: number) => [`${value}/20`, t('common.score')]}
           />
         </RadarChart>
       </ResponsiveContainer>

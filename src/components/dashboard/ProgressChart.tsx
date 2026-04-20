@@ -9,19 +9,21 @@ import {
   AreaChart,
 } from 'recharts';
 import { useStudentStore } from '../../stores/useStudentStore';
+import { useTranslation } from 'react-i18next';
 
 export const ProgressChart: React.FC = () => {
   const { progressData } = useStudentStore();
+  const { t, i18n } = useTranslation();
 
   const displayData = progressData.slice(-14).map((d) => ({
     ...d,
-    label: new Date(d.date).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }),
+    label: new Date(d.date).toLocaleDateString(i18n.resolvedLanguage === 'en' ? 'en-US' : 'fr-FR', { day: '2-digit', month: '2-digit' }),
   }));
 
   return (
     <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 h-full shadow-sm dark:shadow-none">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base font-semibold text-gray-900 dark:text-white">Progression (14 derniers jours)</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white">{t('dashboard.progress')}</h3>
       </div>
       <ResponsiveContainer width="100%" height={220}>
         <AreaChart data={displayData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
@@ -53,7 +55,7 @@ export const ProgressChart: React.FC = () => {
               color: 'white',
               fontSize: '12px',
             }}
-            formatter={(value: number) => [`${value}/20`, 'Score']}
+            formatter={(value: number) => [`${value}/20`, t('common.score')]}
           />
           <Area
             type="monotone"

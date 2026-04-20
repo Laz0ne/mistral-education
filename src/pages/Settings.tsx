@@ -5,6 +5,8 @@ import { useStudentStore } from '../stores/useStudentStore';
 import { useChatStore } from '../stores/useChatStore';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
+import { Trans, useTranslation } from 'react-i18next';
+import { getGradeLabel, getSubjectLabel } from '../utils/helpers';
 
 const AVAILABLE_SUBJECTS = [
   'Maths', 'Français', 'Histoire', 'Physique', 'Anglais', 'SVT',
@@ -16,6 +18,7 @@ const GRADES = ['6ème', '5ème', '4ème', '3ème', 'Seconde', 'Première', 'Ter
 export const Settings: React.FC = () => {
   const { student, updateStudent } = useStudentStore();
   const { clearMessages } = useChatStore();
+  const { t } = useTranslation();
   const [form, setForm] = useState({ ...student });
   const [showApiKey, setShowApiKey] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -68,14 +71,14 @@ export const Settings: React.FC = () => {
         if (data.planner) localStorage.setItem('mistral-planner-store', data.planner);
         window.location.reload();
       } catch {
-        alert('Fichier invalide');
+        alert(t('settings.invalidFile'));
       }
     };
     reader.readAsText(file);
   };
 
   const handleReset = () => {
-    if (window.confirm('Êtes-vous sûr de vouloir réinitialiser toutes vos données ? Cette action est irréversible.')) {
+    if (window.confirm(t('settings.resetConfirm'))) {
       localStorage.clear();
       window.location.reload();
     }
@@ -91,12 +94,12 @@ export const Settings: React.FC = () => {
   return (
     <div className="p-6 max-w-2xl mx-auto space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Paramètres</h2>
-        <p className="text-sm text-gray-500 dark:text-white/50 mt-1">Personnalisez votre expérience Mistral Education.</p>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('settings.title')}</h2>
+        <p className="text-sm text-gray-500 dark:text-white/50 mt-1">{t('settings.subtitle')}</p>
       </div>
 
       {/* Profile */}
-      <Section title="Profil">
+      <Section title={t('settings.profile')}>
         <div className="space-y-4">
           <div className="flex items-center gap-4 mb-5">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#F7931A] to-[#FF6B00] flex items-center justify-center text-2xl font-bold text-white flex-shrink-0">
@@ -104,27 +107,27 @@ export const Settings: React.FC = () => {
             </div>
             <div>
               <p className="text-sm font-semibold text-gray-900 dark:text-white">{form.firstName} {form.lastName}</p>
-              <p className="text-xs text-gray-400 dark:text-white/40">{form.grade} · {form.school}</p>
+              <p className="text-xs text-gray-400 dark:text-white/40">{getGradeLabel(form.grade)} · {form.school}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <Input
               name="firstName"
-              label="Prénom"
+              label={t('settings.firstName')}
               value={form.firstName}
               onChange={handleChange}
             />
             <Input
               name="lastName"
-              label="Nom"
+              label={t('settings.lastName')}
               value={form.lastName}
               onChange={handleChange}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">Classe</label>
+            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">{t('settings.grade')}</label>
             <select
               name="grade"
               value={form.grade}
@@ -132,23 +135,23 @@ export const Settings: React.FC = () => {
               className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-[#F7931A]/40"
             >
               {GRADES.map((g) => (
-                <option key={g} value={g} className="bg-white dark:bg-[#1A1A1D]">{g}</option>
-              ))}
-            </select>
-          </div>
+                  <option key={g} value={g} className="bg-white dark:bg-[#1A1A1D]">{getGradeLabel(g)}</option>
+                ))}
+              </select>
+            </div>
 
           <Input
             name="school"
-            label="Établissement"
+            label={t('settings.school')}
             value={form.school}
             onChange={handleChange}
-            placeholder="Nom de votre lycée/collège"
+            placeholder={t('settings.schoolPlaceholder')}
           />
         </div>
       </Section>
 
       {/* Subjects */}
-      <Section title="Matières suivies">
+      <Section title={t('settings.subjects')}>
         <div className="flex flex-wrap gap-2">
           {AVAILABLE_SUBJECTS.map((subject) => {
             const selected = form.subjects.includes(subject);
@@ -164,7 +167,7 @@ export const Settings: React.FC = () => {
                     : 'bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-white/50 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
-                {subject}
+                {getSubjectLabel(subject)}
               </motion.button>
             );
           })}
@@ -172,18 +175,21 @@ export const Settings: React.FC = () => {
       </Section>
 
       {/* API Key */}
-      <Section title="Clé API Mistral">
+      <Section title={t('settings.api')}>
         <p className="text-xs text-gray-400 dark:text-white/40 mb-3">
-          Obtenez votre clé API sur{' '}
-          <a
-            href="https://console.mistral.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#F7931A] underline"
-          >
-            console.mistral.ai
-          </a>
-          . Sans clé, des réponses de démonstration seront utilisées.
+          <Trans
+            i18nKey="settings.apiHelp"
+            components={{
+              link: (
+                <a
+                  href="https://console.mistral.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#F7931A] underline"
+                />
+              ),
+            }}
+          />
         </p>
         <div className="relative">
           <input
@@ -191,7 +197,7 @@ export const Settings: React.FC = () => {
             type={showApiKey ? 'text' : 'password'}
             value={form.apiKey}
             onChange={handleChange}
-            placeholder="sk-..."
+            placeholder={t('settings.apiPlaceholder')}
             className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 pr-10 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40"
           />
           <button
@@ -205,11 +211,11 @@ export const Settings: React.FC = () => {
       </Section>
 
       {/* Appearance */}
-      <Section title="Apparence">
+      <Section title={t('settings.appearance')}>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-900 dark:text-white">Mode sombre</p>
-            <p className="text-xs text-gray-400 dark:text-white/40">Thème foncé par défaut</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-white">{t('settings.darkMode')}</p>
+            <p className="text-xs text-gray-400 dark:text-white/40">{t('settings.darkModeDesc')}</p>
           </div>
           <button
             onClick={() => {
@@ -238,11 +244,11 @@ export const Settings: React.FC = () => {
         icon={<Save className="w-4 h-4" />}
         onClick={handleSave}
       >
-        {saved ? 'Paramètres enregistrés !' : 'Enregistrer les paramètres'}
+        {saved ? t('settings.saved') : t('settings.save')}
       </Button>
 
       {/* Data management */}
-      <Section title="Gestion des données">
+      <Section title={t('settings.data')}>
         <div className="space-y-3">
           <div className="flex gap-3">
             <Button
@@ -251,12 +257,12 @@ export const Settings: React.FC = () => {
               icon={<Download className="w-4 h-4" />}
               onClick={handleExport}
             >
-              Exporter
+              {t('common.export')}
             </Button>
             <label className="flex-1">
               <div className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-white/10 cursor-pointer transition-all">
                 <Upload className="w-4 h-4" />
-                Importer
+                {t('common.import')}
               </div>
               <input type="file" accept=".json" className="hidden" onChange={handleImport} />
             </label>
@@ -267,10 +273,10 @@ export const Settings: React.FC = () => {
             icon={<Trash2 className="w-4 h-4" />}
             onClick={handleReset}
           >
-            Réinitialiser toutes les données
+            {t('settings.reset')}
           </Button>
           <p className="text-xs text-gray-300 dark:text-white/30 text-center">
-            La réinitialisation supprimera définitivement toutes vos données locales.
+            {t('settings.resetWarning')}
           </p>
 
           <div className="pt-2 border-t border-gray-100 dark:border-white/5">
@@ -280,7 +286,7 @@ export const Settings: React.FC = () => {
               onClick={clearMessages}
               className="text-white/40 hover:text-white/60"
             >
-              Effacer l'historique des conversations
+              {t('settings.clearHistory')}
             </Button>
           </div>
         </div>

@@ -5,9 +5,12 @@ import { ExerciseList } from '../components/exercises/ExerciseList';
 import { QuizMode } from '../components/exercises/QuizMode';
 import { useExerciseStore } from '../stores/useExerciseStore';
 import { Exercise } from '../types';
+import { useTranslation } from 'react-i18next';
+import { getSubjectLabel } from '../utils/helpers';
 
 export const Exercises: React.FC = () => {
   const { currentExercise, setCurrentExercise } = useExerciseStore();
+  const { t } = useTranslation();
 
   const handleStart = (exercise: Exercise) => {
     setCurrentExercise(exercise);
@@ -30,7 +33,7 @@ export const Exercises: React.FC = () => {
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">{currentExercise.title}</h2>
-                <p className="text-sm text-gray-500 dark:text-white/50">{currentExercise.subject}</p>
+                <p className="text-sm text-gray-500 dark:text-white/50">{getSubjectLabel(currentExercise.subject)}</p>
               </div>
               <button
                 onClick={handleClose}
@@ -50,12 +53,12 @@ export const Exercises: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            <div className="mb-5">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Exercices</h2>
-              <p className="text-sm text-gray-500 dark:text-white/50 mt-1">
-                Entraînez-vous sur des exercices adaptés à votre niveau.
-              </p>
-            </div>
+              <div className="mb-5">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t('exercises.title')}</h2>
+                <p className="text-sm text-gray-500 dark:text-white/50 mt-1">
+                  {t('exercises.subtitle')}
+                </p>
+              </div>
             <ExerciseList onStart={handleStart} />
           </motion.div>
         )}

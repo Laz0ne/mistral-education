@@ -8,14 +8,7 @@ import { useStudentStore } from '../../stores/useStudentStore';
 import { sendMessage } from '../../services/mistralApi';
 import { generateId } from '../../utils/helpers';
 import { ChatMessage } from '../../types';
-
-const QUICK_SUGGESTIONS = [
-  'Explique-moi les fractions',
-  'Comment résoudre une équation du 2nd degré ?',
-  'Résume la Révolution française',
-  'C\'est quoi la photosynthèse ?',
-  'Explique le Present Perfect',
-];
+import { useTranslation } from 'react-i18next';
 
 const TypingIndicator: React.FC = () => (
   <div className="flex justify-start mb-3">
@@ -34,8 +27,16 @@ const TypingIndicator: React.FC = () => (
 
 export const ChatInterface: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
+  const { t } = useTranslation();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const quickSuggestions = [
+    t('chat.quick.fractions'),
+    t('chat.quick.quadratic'),
+    t('chat.quick.revolution'),
+    t('chat.quick.photosynthesis'),
+    t('chat.quick.presentPerfect'),
+  ];
 
   const { messages, isLoading, addMessage, setLoading, clearMessages, incrementQuestions } =
     useChatStore();
@@ -76,7 +77,7 @@ export const ChatInterface: React.FC = () => {
         id: generateId(),
         role: 'assistant',
         content:
-          'Désolé, une erreur s\'est produite. Vérifiez votre clé API dans les paramètres ou réessayez dans quelques instants.',
+          t('homework.error'),
         timestamp: new Date(),
       };
       addMessage(errorMessage);
@@ -110,9 +111,9 @@ export const ChatInterface: React.FC = () => {
       {/* Quick suggestions */}
       {messages.length <= 1 && !isLoading && (
         <div className="px-4 pb-3">
-          <p className="text-xs text-gray-400 dark:text-white/40 mb-2">Suggestions :</p>
+          <p className="text-xs text-gray-400 dark:text-white/40 mb-2">{t('chat.suggestions')}</p>
           <div className="flex flex-wrap gap-2">
-            {QUICK_SUGGESTIONS.map((suggestion) => (
+            {quickSuggestions.map((suggestion) => (
               <motion.button
                 key={suggestion}
                 whileHover={{ scale: 1.02 }}
@@ -136,7 +137,7 @@ export const ChatInterface: React.FC = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Pose ta question ici..."
+            placeholder={t('chat.inputPlaceholder')}
             rows={1}
             className="flex-1 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 resize-none focus:outline-none py-1.5 max-h-32 scrollbar-thin"
             style={{ minHeight: '36px' }}
@@ -145,7 +146,7 @@ export const ChatInterface: React.FC = () => {
             <button
               onClick={clearMessages}
               className="p-1.5 rounded-lg text-gray-400 dark:text-white/30 hover:text-gray-600 dark:hover:text-white/60 transition-colors"
-              title="Effacer la conversation"
+              title={t('chat.clearConversation')}
             >
               <Trash2 className="w-4 h-4" />
             </button>
@@ -161,7 +162,7 @@ export const ChatInterface: React.FC = () => {
           </div>
         </div>
         <p className="text-xs text-gray-300 dark:text-white/20 text-center mt-2">
-          Entrée pour envoyer · Shift+Entrée pour nouvelle ligne
+          {t('chat.sendHint')}
         </p>
       </div>
     </div>

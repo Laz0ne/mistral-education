@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 import { Plus, Trash2, Save } from 'lucide-react';
 import { useStudentStore } from '../../stores/useStudentStore';
 import { SubjectGrade } from '../../types';
-import { getLevelFromScore, getSubjectColor, getSubjectIcon } from '../../utils/helpers';
+import { getLevelFromScore, getSubjectColor, getSubjectIcon, getSubjectLabel } from '../../utils/helpers';
 import { Button } from '../ui/Button';
+import { useTranslation } from 'react-i18next';
 
 const AVAILABLE_SUBJECTS = [
   'Maths', 'Français', 'Histoire', 'Physique', 'Anglais', 'SVT',
@@ -13,6 +14,7 @@ const AVAILABLE_SUBJECTS = [
 
 export const GradeInput: React.FC = () => {
   const { subjectGrades, updateGrades } = useStudentStore();
+  const { t } = useTranslation();
   const [localGrades, setLocalGrades] = useState<SubjectGrade[]>(subjectGrades);
   const [saved, setSaved] = useState(false);
 
@@ -63,14 +65,14 @@ export const GradeInput: React.FC = () => {
   return (
     <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
       <div className="flex items-center justify-between mb-5">
-        <h3 className="text-base font-semibold text-gray-900 dark:text-white">Mes notes par matière</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white">{t('weakness.gradesTitle')}</h3>
         <Button
           variant={saved ? 'secondary' : 'primary'}
           size="sm"
           icon={<Save className="w-4 h-4" />}
           onClick={handleSave}
         >
-          {saved ? 'Enregistré !' : 'Enregistrer'}
+          {saved ? t('common.saved') : t('common.save')}
         </Button>
       </div>
 
@@ -85,7 +87,7 @@ export const GradeInput: React.FC = () => {
           >
             <span className="text-xl w-8 text-center">{getSubjectIcon(grade.subject)}</span>
             <span className="text-sm font-medium text-gray-700 dark:text-white/80 w-24 flex-shrink-0">
-              {grade.subject}
+              {getSubjectLabel(grade.subject)}
             </span>
             <div className="flex-1">
               <input
@@ -119,7 +121,7 @@ export const GradeInput: React.FC = () => {
 
       {addableSubjects.length > 0 && (
         <div className="mt-5 pt-4 border-t border-gray-100 dark:border-white/5">
-          <p className="text-xs text-gray-400 dark:text-white/40 mb-2">Ajouter une matière :</p>
+          <p className="text-xs text-gray-400 dark:text-white/40 mb-2">{t('weakness.addSubject')}</p>
           <div className="flex flex-wrap gap-2">
             {addableSubjects.map((subject) => (
               <button
@@ -128,7 +130,7 @@ export const GradeInput: React.FC = () => {
                 className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-white/50 hover:text-gray-900 dark:hover:text-white hover:border-[#F7931A]/40 transition-all"
               >
                 <Plus className="w-3 h-3" />
-                {subject}
+                {getSubjectLabel(subject)}
               </button>
             ))}
           </div>
@@ -137,4 +139,3 @@ export const GradeInput: React.FC = () => {
     </div>
   );
 };
-

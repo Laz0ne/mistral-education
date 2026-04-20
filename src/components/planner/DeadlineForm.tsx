@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { usePlannerStore } from '../../stores/usePlannerStore';
 import { PlannerEvent } from '../../types';
-import { generateId, getSubjectColor } from '../../utils/helpers';
+import { generateId, getSubjectColor, getSubjectLabel } from '../../utils/helpers';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
+import { useTranslation } from 'react-i18next';
 
 const EVENT_TYPES = [
-  { value: 'exam', label: 'Examen' },
-  { value: 'homework', label: 'Devoir' },
-  { value: 'revision', label: 'Révision' },
+  { value: 'exam' },
+  { value: 'homework' },
+  { value: 'revision' },
 ];
 
 const SUBJECTS = ['Maths', 'Français', 'Histoire', 'Physique', 'Anglais', 'SVT', 'Philosophie', 'SES', 'Autre'];
 
 export const DeadlineForm: React.FC = () => {
   const { addEvent } = usePlannerStore();
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     type: 'exam' as PlannerEvent['type'],
@@ -59,26 +61,26 @@ export const DeadlineForm: React.FC = () => {
 
   return (
     <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
-      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Ajouter un événement</h3>
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">{t('planner.addEvent')}</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">Type</label>
+            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">{t('planner.type')}</label>
             <select
               name="type"
               value={form.type}
               onChange={handleChange}
               className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-[#F7931A]/40"
             >
-              {EVENT_TYPES.map((t) => (
-                <option key={t.value} value={t.value} className="bg-white dark:bg-[#1A1A1D]">
-                  {t.label}
+              {EVENT_TYPES.map((eventType) => (
+                <option key={eventType.value} value={eventType.value} className="bg-white dark:bg-[#1A1A1D]">
+                  {t(`planner.typeLabels.${eventType.value}`)}
                 </option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">Matière</label>
+            <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">{t('planner.subject')}</label>
             <select
               name="subject"
               value={form.subject}
@@ -87,7 +89,7 @@ export const DeadlineForm: React.FC = () => {
             >
               {SUBJECTS.map((s) => (
                 <option key={s} value={s} className="bg-white dark:bg-[#1A1A1D]">
-                  {s}
+                  {getSubjectLabel(s)}
                 </option>
               ))}
             </select>
@@ -96,17 +98,17 @@ export const DeadlineForm: React.FC = () => {
 
         <Input
           name="title"
-          label="Titre"
+          label={t('planner.titleLabel')}
           value={form.title}
           onChange={handleChange}
-          placeholder="Ex: Contrôle sur les fonctions"
+          placeholder={t('planner.titlePlaceholder')}
           required
         />
 
         <div className="grid grid-cols-2 gap-3">
           <Input
             name="date"
-            label="Date"
+            label={t('planner.date')}
             type="date"
             value={form.date}
             onChange={handleChange}
@@ -114,7 +116,7 @@ export const DeadlineForm: React.FC = () => {
           />
           <Input
             name="time"
-            label="Heure"
+            label={t('planner.time')}
             type="time"
             value={form.time}
             onChange={handleChange}
@@ -122,13 +124,13 @@ export const DeadlineForm: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">Description</label>
+          <label className="block text-sm font-medium text-gray-600 dark:text-white/70 mb-1.5">{t('planner.description')}</label>
           <textarea
             name="description"
             value={form.description}
             onChange={handleChange}
             rows={2}
-            placeholder="Notes supplémentaires..."
+            placeholder={t('planner.descriptionPlaceholder')}
             className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 focus:outline-none focus:border-[#F7931A]/40 resize-none"
           />
         </div>
@@ -139,7 +141,7 @@ export const DeadlineForm: React.FC = () => {
           className="w-full justify-center"
           icon={<Plus className="w-4 h-4" />}
         >
-          {submitted ? 'Événement ajouté !' : 'Ajouter l\'événement'}
+          {submitted ? t('planner.eventAdded') : t('planner.addEventBtn')}
         </Button>
       </form>
     </div>

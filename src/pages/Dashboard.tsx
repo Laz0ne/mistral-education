@@ -7,11 +7,14 @@ import { WeaknessChart } from '../components/dashboard/WeaknessChart';
 import { UpcomingDeadlines } from '../components/dashboard/UpcomingDeadlines';
 import { useChatStore } from '../stores/useChatStore';
 import { useExerciseStore } from '../stores/useExerciseStore';
+import { useTranslation } from 'react-i18next';
+import { getGradeLabel } from '../utils/helpers';
 
 export const Dashboard: React.FC = () => {
   const { student } = useStudentStore();
   const { messages } = useChatStore();
   const { exercises } = useExerciseStore();
+  const { t, i18n } = useTranslation();
 
   const recentMessages = messages.filter((m) => m.role === 'user').slice(-3);
   const recentExercises = exercises
@@ -28,10 +31,10 @@ export const Dashboard: React.FC = () => {
       >
         <div>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Bonjour, {student.firstName} 👋
+            {t('dashboard.greeting', { name: student.firstName })}
           </h2>
           <p className="text-sm text-gray-500 dark:text-white/50 mt-1">
-            {new Date().toLocaleDateString('fr-FR', {
+            {new Date().toLocaleDateString(i18n.resolvedLanguage === 'en' ? 'en-US' : 'fr-FR', {
               weekday: 'long',
               year: 'numeric',
               month: 'long',
@@ -41,7 +44,7 @@ export const Dashboard: React.FC = () => {
         </div>
         <div className="hidden sm:block text-right">
           <p className="text-xs text-gray-400 dark:text-white/40">{student.school}</p>
-          <p className="text-xs text-gray-400 dark:text-white/40">{student.grade}</p>
+          <p className="text-xs text-gray-400 dark:text-white/40">{getGradeLabel(student.grade)}</p>
         </div>
       </motion.div>
 
@@ -60,10 +63,10 @@ export const Dashboard: React.FC = () => {
 
         {/* Recent activity */}
         <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
-          <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Activité récente</h3>
+          <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">{t('dashboard.recentActivity')}</h3>
           {recentMessages.length === 0 && recentExercises.length === 0 ? (
             <p className="text-sm text-gray-400 dark:text-white/40 text-center py-6">
-              Pas d'activité récente. Commencez à utiliser la plateforme !
+              {t('dashboard.noActivity')}
             </p>
           ) : (
             <div className="space-y-3">
@@ -76,7 +79,7 @@ export const Dashboard: React.FC = () => {
                     💬
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-gray-400 dark:text-white/40 mb-0.5">Question posée</p>
+                    <p className="text-xs text-gray-400 dark:text-white/40 mb-0.5">{t('dashboard.questionAsked')}</p>
                     <p className="text-sm text-gray-600 dark:text-white/70 truncate">{msg.content}</p>
                   </div>
                 </div>
@@ -91,8 +94,9 @@ export const Dashboard: React.FC = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-gray-400 dark:text-white/40 mb-0.5">
-                      Exercice{' '}
-                      {ex.status === 'completed' ? 'terminé' : 'en cours'}
+                      {t('dashboard.exerciseState', {
+                        state: t(`status.${ex.status}`),
+                      })}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-white/70 truncate">{ex.title}</p>
                   </div>

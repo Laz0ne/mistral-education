@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { ChatMessage } from '../types';
-import { mockChatMessages } from '../data/mockExercises';
+import { getMockChatMessages } from '../data/mockExercises';
 
 interface ChatStore {
   messages: ChatMessage[];
@@ -16,13 +16,13 @@ interface ChatStore {
 export const useChatStore = create<ChatStore>()(
   persist(
     (set) => ({
-      messages: mockChatMessages,
+      messages: getMockChatMessages(),
       isLoading: false,
       questionsCount: 0,
       addMessage: (message) =>
         set((state) => ({ messages: [...state.messages, message] })),
       setLoading: (loading) => set({ isLoading: loading }),
-      clearMessages: () => set({ messages: mockChatMessages }),
+      clearMessages: () => set({ messages: getMockChatMessages() }),
       incrementQuestions: () =>
         set((state) => ({ questionsCount: state.questionsCount + 1 })),
     }),

@@ -1,4 +1,5 @@
 import { Exercise, ChatMessage } from '../types';
+import i18n from '../i18n';
 
 export const mockExercises: Exercise[] = [
   {
@@ -683,11 +684,11 @@ export const mockExercises: Exercise[] = [
   },
 ];
 
-export const mockChatMessages: ChatMessage[] = [
+export const getMockChatMessages = (): ChatMessage[] => [
   {
     id: 'msg-1',
     role: 'assistant',
-    content: 'Bonjour ! Je suis ton assistant Mistral Education 🎓. Comment puis-je t\'aider aujourd\'hui ? Tu peux me poser des questions sur tes cours, demander des explications ou me parler de tes difficultés.',
+    content: i18n.t('chat.welcome'),
     timestamp: new Date(),
   },
 ];

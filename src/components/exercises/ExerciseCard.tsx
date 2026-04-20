@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { Clock, ChevronRight } from 'lucide-react';
 import { Exercise } from '../../types';
 import { Badge } from '../ui/Badge';
-import { getSubjectIcon, getSubjectColor } from '../../utils/helpers';
+import { getSubjectIcon, getSubjectColor, getSubjectLabel } from '../../utils/helpers';
+import { useTranslation } from 'react-i18next';
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -11,19 +12,18 @@ interface ExerciseCardProps {
   index?: number;
 }
 
-const difficultyConfig = {
-  easy: { label: 'Facile', variant: 'success' as const },
-  medium: { label: 'Moyen', variant: 'warning' as const },
-  hard: { label: 'Difficile', variant: 'danger' as const },
-};
-
-const statusConfig = {
-  todo: { label: 'À faire', variant: 'default' as const },
-  'in-progress': { label: 'En cours', variant: 'info' as const },
-  completed: { label: 'Terminé', variant: 'success' as const },
-};
-
 export const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, onStart, index = 0 }) => {
+  const { t } = useTranslation();
+  const difficultyConfig = {
+    easy: { label: t('difficulty.easy'), variant: 'success' as const },
+    medium: { label: t('difficulty.medium'), variant: 'warning' as const },
+    hard: { label: t('difficulty.hard'), variant: 'danger' as const },
+  };
+  const statusConfig = {
+    todo: { label: t('status.todo'), variant: 'default' as const },
+    'in-progress': { label: t('status.in-progress'), variant: 'info' as const },
+    completed: { label: t('status.completed'), variant: 'success' as const },
+  };
   const diff = difficultyConfig[exercise.difficulty];
   const status = statusConfig[exercise.status];
   const color = getSubjectColor(exercise.subject);
@@ -44,7 +44,7 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, onStart, i
             {getSubjectIcon(exercise.subject)}
           </div>
           <div>
-            <p className="text-xs font-medium" style={{ color }}>{exercise.subject}</p>
+            <p className="text-xs font-medium" style={{ color }}>{getSubjectLabel(exercise.subject)}</p>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">{exercise.title}</h3>
           </div>
         </div>
@@ -58,15 +58,15 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, onStart, i
           <Badge variant={diff.variant} size="sm">{diff.label}</Badge>
           <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-white/40">
             <Clock className="w-3 h-3" />
-            <span>{exercise.estimatedTime} min</span>
+            <span>{exercise.estimatedTime} {t('common.minutes')}</span>
           </div>
-          <span className="text-xs text-gray-300 dark:text-white/30">· {exercise.questions.length} questions</span>
+          <span className="text-xs text-gray-300 dark:text-white/30">· {t('common.questionCount', { count: exercise.questions.length })}</span>
         </div>
         <button
           onClick={() => onStart(exercise)}
           className="flex items-center gap-1 text-xs font-medium text-[#F7931A] hover:text-[#FF6B00] transition-colors"
         >
-          {exercise.status === 'completed' ? 'Refaire' : 'Commencer'}
+          {exercise.status === 'completed' ? t('exercises.redo') : t('exercises.start')}
           <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>

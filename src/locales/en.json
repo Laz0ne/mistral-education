@@ -1,0 +1,252 @@
+{
+  "app": {
+    "title": "Mistral Education",
+    "name": "Mistral",
+    "subtitle": "Education"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "homework": "Homework Help",
+    "weaknesses": "Weakness Detection",
+    "weaknessesShort": "Weaknesses",
+    "exercises": "Exercises",
+    "planner": "Study Planner",
+    "plannerShort": "Planner",
+    "settings": "Settings"
+  },
+  "common": {
+    "score": "Score",
+    "average": "Average",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "inDays": "In {{count}} days",
+    "daysShort": "{{count}}d",
+    "save": "Save",
+    "saved": "Saved!",
+    "delete": "Delete",
+    "import": "Import",
+    "export": "Export",
+    "minutes": "min",
+    "questionCount": "{{count}} question",
+    "questionCount_plural": "{{count}} questions"
+  },
+  "subjects": {
+    "Maths": "Math",
+    "Français": "French",
+    "Histoire": "History",
+    "Physique": "Physics",
+    "Anglais": "English",
+    "SVT": "Biology",
+    "Philosophie": "Philosophy",
+    "SES": "Economics",
+    "Informatique": "Computer Science",
+    "Autre": "Other"
+  },
+  "levels": {
+    "needs-improvement": "Needs improvement",
+    "medium": "Intermediate",
+    "good": "Good"
+  },
+  "status": {
+    "todo": "To do",
+    "in-progress": "In progress",
+    "completed": "Completed"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "all": "All"
+  },
+  "dashboard": {
+    "greeting": "Hello, {{name}} 👋",
+    "recentActivity": "Recent activity",
+    "noActivity": "No recent activity. Start using the platform!",
+    "questionAsked": "Question asked",
+    "exerciseState": "Exercise {{state}}",
+    "progress": "Progress (last 14 days)",
+    "skillsProfile": "Skills profile",
+    "upcomingDeadlines": "Upcoming deadlines",
+    "noDeadlines": "No upcoming deadlines 🎉"
+  },
+  "stats": {
+    "questionsAsked": "Questions asked",
+    "questionsSub": "to Mistral AI",
+    "exercisesCompleted": "Exercises completed",
+    "exercisesSub": "successful exercises",
+    "average": "Overall average",
+    "excellent": "Excellent!",
+    "good": "Good!",
+    "improve": "Needs improvement",
+    "streak": "Streak days",
+    "streakPositive": "keep it up!",
+    "streakZero": "start today!"
+  },
+  "homework": {
+    "demoMode": "Demo mode — Set up your Mistral API key in {{settingsLink}} for personalized answers.",
+    "error": "Sorry, an error occurred. Check your API key in settings or try again in a moment."
+  },
+  "chat": {
+    "suggestions": "Suggestions:",
+    "inputPlaceholder": "Ask your question here...",
+    "clearConversation": "Clear conversation",
+    "sendHint": "Enter to send · Shift+Enter for a new line",
+    "quick": {
+      "fractions": "Explain fractions",
+      "quadratic": "How do I solve a quadratic equation?",
+      "revolution": "Summarize the French Revolution",
+      "photosynthesis": "What is photosynthesis?",
+      "presentPerfect": "Explain the Present Perfect"
+    },
+    "welcome": "Hi! I'm your Mistral Education assistant 🎓. How can I help you today? You can ask questions about your courses, request explanations, or tell me about your difficulties."
+  },
+  "weakness": {
+    "title": "Weakness Detection",
+    "subtitle": "Enter your grades to get a personalized analysis and recommendations.",
+    "gradesTitle": "My grades by subject",
+    "addSubject": "Add a subject:",
+    "analysisTitle": "Performance analysis",
+    "comparison": "Average comparison",
+    "levelsBySubject": "Levels by subject",
+    "reportTitle": "Report and recommendations",
+    "globalAverage": "Overall average: {{avg}}/20",
+    "priority": "Priority improvements",
+    "toConsolidate": "To strengthen",
+    "strengths": "Strengths",
+    "feedback": {
+      "excellent": "Excellent work! You're on the right track for outstanding results.",
+      "veryGood": "Very good level! Keep it up and consolidate what you know.",
+      "good": "Good overall level. There are still a few areas to improve.",
+      "fair": "Fair level. Consistent effort will help you improve significantly.",
+      "needsWork": "Major effort is needed. Stay strong—every bit of progress matters!"
+    },
+    "mediumRec": "You're on the right track! To reach the next level, practice regularly and use homework help for blocking points.",
+    "recommendations": {
+      "maths": "With {{score}}/20 in Math, focus on foundational exercises. Review core concepts and practice daily. Use Homework Help whenever you are blocked.",
+      "french": "In French ({{score}}/20), practice regular reading and text analysis. Review rhetorical devices and essay structure.",
+      "history": "In History ({{score}}/20), build chronological revision sheets. Memorize key dates and event sequences.",
+      "physics": "In Physics ({{score}}/20), understand formulas before applying them. Draw diagrams and solve problems step by step.",
+      "english": "In English ({{score}}/20), practice daily with podcasts and videos. Review tenses and thematic vocabulary.",
+      "biology": "In Biology ({{score}}/20), use diagrams to memorize cycles and structures. Practical exercises will help reinforce understanding.",
+      "generic": "For {{subject}} ({{score}}/20), review basics and practice regularly to improve."
+    }
+  },
+  "exercises": {
+    "title": "Exercises",
+    "subtitle": "Practice with exercises adapted to your level.",
+    "search": "Search for an exercise...",
+    "subject": "Subject",
+    "level": "Level",
+    "status": "Status",
+    "all": "All",
+    "results": "{{count}} exercise(s) found",
+    "none": "No exercises match your search",
+    "start": "Start",
+    "redo": "Retry",
+    "restart": "Restart",
+    "back": "Back to exercises",
+    "question": "Question {{current}} / {{total}}",
+    "score": "{{count}} correct answer(s)",
+    "correct": "✓ Correct answer!",
+    "incorrect": "✗ Wrong answer",
+    "seeResults": "See results",
+    "nextQuestion": "Next question",
+    "excellent": "Excellent!",
+    "wellDone": "Well done!",
+    "keepLearning": "Keep learning!",
+    "result": "You scored {{score}}/{{total}} ({{percentage}}%) in {{title}}",
+    "perfect": "🎉 Perfect score! You mastered this topic!",
+    "veryGood": "🌟 Great result! Just a few points to review.",
+    "good": "📚 Good work! Review the missed questions.",
+    "encourage": "💪 Don't give up! Practice makes perfect."
+  },
+  "planner": {
+    "title": "Study Planner",
+    "subtitle": "Organize your homework, exams and revision sessions.",
+    "todayButton": "Today",
+    "eventDetail": "Event details",
+    "type": "Type",
+    "subject": "Subject",
+    "date": "Date",
+    "time": "Time",
+    "at": "at",
+    "description": "Description",
+    "markDone": "Mark as completed",
+    "markUndone": "Mark as incomplete",
+    "addEvent": "Add an event",
+    "addEventBtn": "Add event",
+    "eventAdded": "Event added!",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Ex: Quiz on functions",
+    "descriptionPlaceholder": "Additional notes...",
+    "nextExam": "Next exam",
+    "studyPlan": "Study plan",
+    "noEvents": "No upcoming events. Add deadlines to plan your revision 📅",
+    "history": "Recent history",
+    "typeLabels": {
+      "exam": "Exam",
+      "homework": "Homework",
+      "revision": "Revision"
+    },
+    "typeBadges": {
+      "exam": "📝 Exam",
+      "homework": "📋 Homework",
+      "revision": "📚 Revision"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Customize your Mistral Education experience.",
+    "profile": "Profile",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "grade": "Grade",
+    "school": "School",
+    "schoolPlaceholder": "Your school name",
+    "subjects": "Subjects",
+    "api": "Mistral API key",
+    "apiHelp": "Get your API key from {{link}}. Without a key, demo answers will be used.",
+    "apiPlaceholder": "sk-...",
+    "appearance": "Appearance",
+    "darkMode": "Dark mode",
+    "darkModeDesc": "Enable dark theme by default",
+    "saved": "Settings saved!",
+    "save": "Save settings",
+    "data": "Data management",
+    "reset": "Reset all data",
+    "resetWarning": "Reset will permanently delete all your local data.",
+    "clearHistory": "Clear conversation history",
+    "invalidFile": "Invalid file",
+    "resetConfirm": "Are you sure you want to reset all your data? This action is irreversible."
+  },
+  "grades": {
+    "6ème": "6th grade",
+    "5ème": "7th grade",
+    "4ème": "8th grade",
+    "3ème": "9th grade",
+    "Seconde": "10th grade",
+    "Première": "11th grade",
+    "Terminale": "12th grade"
+  },
+  "mistral": {
+    "systemPrompt": "You are a Mistral Education tutoring assistant. You help students understand their lessons. You provide clear, educational explanations adapted to middle/high school level. You never give direct answers; instead, you guide the student to understanding. Always answer in English.",
+    "apiError": "Mistral API error: {{message}}",
+    "fallback": "Sorry, I couldn't generate an answer. Please try again in a moment.",
+    "topic": {
+      "math": "Math is like a puzzle! For fractions, remember the numerator is on top and the denominator is on the bottom. To add fractions, first use a common denominator. Example: 1/2 + 1/3 = 3/6 + 2/6 = 5/6. Want to work through a specific example together?",
+      "history": "History is fascinating! To remember events well, put them in context: who, what, when, why. Build a timeline in your head. Which part of this topic is difficult for you?",
+      "french": "French grammar gets easier with method. Start by identifying the verb group, then apply the right endings. Regular practice is key. Which tense or grammar point is blocking you?",
+      "physics": "In physics and chemistry, understanding units is essential. Before applying a formula, make sure all values are in the correct SI units. Then isolate the variable you need. What concept are you working on?",
+      "english": "To improve in English, immersion is very effective! Listen to podcasts and watch shows in original version. For grammar, focus on sentence patterns rather than abstract rules. What is most difficult for you?"
+    },
+    "mockResponses": [
+      "Great question! To understand this concept, let's start from a concrete example. First think about what you already know on this topic. What part still feels unclear?",
+      "I'll help you make this clearer! This topic can look complex at first, but breaking it down step by step makes it manageable. Which part is the hardest for you?",
+      "Excellent thinking! To master this concept, it's important to build strong foundations. Start by identifying the given data, then what you are asked to find.",
+      "Many students find this topic difficult, but with the right method it becomes accessible! The key is to work methodically. Have you already tried a specific approach?",
+      "Very good question! Imagine a real-life situation: it's like when you have to... Does that make sense? Ask for more detail if you want to go deeper.",
+      "I can see you're working seriously—great job! For this kind of problem, try this 3-step method: 1) read carefully and identify data, 2) choose rules/formulas, 3) apply and verify each step. Which step is toughest for you?",
+      "Great initiative asking this! Deep understanding comes with practice. I suggest progressive exercises: start simple, then move to harder cases. Want to work through an example together?"
+    ]
+  }
+}

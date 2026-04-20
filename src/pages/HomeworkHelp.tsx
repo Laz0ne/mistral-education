@@ -2,6 +2,7 @@ import React from 'react';
 import { ChatInterface } from '../components/homework/ChatInterface';
 import { useStudentStore } from '../stores/useStudentStore';
 import { AlertCircle } from 'lucide-react';
+import { Trans } from 'react-i18next';
 
 export const HomeworkHelp: React.FC = () => {
   const { student } = useStudentStore();
@@ -12,9 +13,12 @@ export const HomeworkHelp: React.FC = () => {
         <div className="mx-6 mt-4 p-3 rounded-xl bg-[#F7931A]/10 border border-[#F7931A]/20 flex items-center gap-2">
           <AlertCircle className="w-4 h-4 text-[#F7931A] flex-shrink-0" />
           <p className="text-xs text-[#F7931A]">
-            Mode démonstration — Configurez votre clé API Mistral dans les{' '}
-            <a href="/settings" className="underline font-medium">Paramètres</a>{' '}
-            pour des réponses personnalisées.
+            <Trans
+              i18nKey="homework.demoMode"
+              components={{
+                settingsLink: <a href="/settings" className="underline font-medium" />,
+              }}
+            />
           </p>
         </div>
       )}

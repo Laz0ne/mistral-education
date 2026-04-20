@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import {
   Home,
   MessageSquare,
@@ -13,20 +14,22 @@ import {
   GraduationCap,
 } from 'lucide-react';
 import { useStudentStore } from '../../stores/useStudentStore';
+import { getGradeLabel } from '../../utils/helpers';
 
 const navItems = [
-  { to: '/', icon: Home, label: 'Tableau de bord' },
-  { to: '/homework', icon: MessageSquare, label: 'Aide aux devoirs' },
-  { to: '/weaknesses', icon: TrendingUp, label: 'Points faibles' },
-  { to: '/exercises', icon: Dumbbell, label: 'Exercices' },
-  { to: '/planner', icon: Calendar, label: 'Planning' },
-  { to: '/settings', icon: Settings, label: 'Paramètres' },
+  { to: '/', icon: Home, label: 'nav.dashboard' },
+  { to: '/homework', icon: MessageSquare, label: 'nav.homework' },
+  { to: '/weaknesses', icon: TrendingUp, label: 'nav.weaknessesShort' },
+  { to: '/exercises', icon: Dumbbell, label: 'nav.exercises' },
+  { to: '/planner', icon: Calendar, label: 'nav.plannerShort' },
+  { to: '/settings', icon: Settings, label: 'nav.settings' },
 ];
 
 export const Sidebar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const { student } = useStudentStore();
+  const { t } = useTranslation();
 
   const NavContent = () => (
     <div className="flex flex-col h-full">
@@ -38,9 +41,9 @@ export const Sidebar: React.FC = () => {
           </div>
           <div>
             <span className="text-base font-bold bg-gradient-to-r from-[#F7931A] to-[#FF6B00] bg-clip-text text-transparent">
-              Mistral
+              {t('app.name')}
             </span>
-            <span className="text-base font-bold text-gray-900 dark:text-white"> Education</span>
+            <span className="text-base font-bold text-gray-900 dark:text-white"> {t('app.subtitle')}</span>
           </div>
         </div>
       </div>
@@ -62,7 +65,7 @@ export const Sidebar: React.FC = () => {
               }`}
             >
               <item.icon className="w-5 h-5 flex-shrink-0" />
-              <span>{item.label}</span>
+              <span>{t(item.label)}</span>
               {isActive && (
                 <motion.div
                   layoutId="activeIndicator"
@@ -84,7 +87,7 @@ export const Sidebar: React.FC = () => {
             <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
               {student.firstName} {student.lastName}
             </p>
-            <p className="text-xs text-gray-400 dark:text-white/40 truncate">{student.grade}</p>
+            <p className="text-xs text-gray-400 dark:text-white/40 truncate">{getGradeLabel(student.grade)}</p>
           </div>
         </div>
       </div>

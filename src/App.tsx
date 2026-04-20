@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Layout } from './components/layout/Layout';
 import { Dashboard } from './pages/Dashboard';
 import { HomeworkHelp } from './pages/HomeworkHelp';
@@ -12,6 +13,7 @@ import { useStudentStore } from './stores/useStudentStore';
 
 function App() {
   const { student } = useStudentStore();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     if (student.darkMode) {
@@ -20,6 +22,11 @@ function App() {
       document.documentElement.classList.remove('dark');
     }
   }, [student.darkMode]);
+
+  useEffect(() => {
+    document.title = t('app.title');
+    document.documentElement.lang = i18n.resolvedLanguage ?? 'fr';
+  }, [i18n.resolvedLanguage, t]);
 
   return (
     <AnimatePresence>

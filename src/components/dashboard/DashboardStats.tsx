@@ -5,6 +5,7 @@ import { useStudentStore } from '../../stores/useStudentStore';
 import { useChatStore } from '../../stores/useChatStore';
 import { useExerciseStore } from '../../stores/useExerciseStore';
 import { calculateAverage } from '../../utils/helpers';
+import { useTranslation } from 'react-i18next';
 
 interface StatCardProps {
   icon: React.ReactNode;
@@ -42,36 +43,37 @@ export const DashboardStats: React.FC = () => {
   const { subjectGrades } = useStudentStore();
   const { questionsCount } = useChatStore();
   const { completedCount, streak } = useExerciseStore();
+  const { t } = useTranslation();
 
   const avg = calculateAverage(subjectGrades.map((g) => g.average));
 
   const stats = [
     {
       icon: <MessageSquare className="w-5 h-5" />,
-      label: 'Questions posées',
+      label: t('stats.questionsAsked'),
       value: questionsCount,
-      sub: 'à Mistral AI',
+      sub: t('stats.questionsSub'),
       color: '#F7931A',
     },
     {
       icon: <CheckCircle className="w-5 h-5" />,
-      label: 'Exercices complétés',
+      label: t('stats.exercisesCompleted'),
       value: completedCount,
-      sub: 'exercices réussis',
+      sub: t('stats.exercisesSub'),
       color: '#10B981',
     },
     {
       icon: <TrendingUp className="w-5 h-5" />,
-      label: 'Moyenne générale',
+      label: t('stats.average'),
       value: `${avg}/20`,
-      sub: avg >= 14 ? 'Excellent !' : avg >= 10 ? 'Bien !' : 'À améliorer',
+      sub: avg >= 14 ? t('stats.excellent') : avg >= 10 ? t('stats.good') : t('stats.improve'),
       color: '#8B5CF6',
     },
     {
       icon: <Flame className="w-5 h-5" />,
-      label: 'Jours de streak',
+      label: t('stats.streak'),
       value: streak,
-      sub: streak > 0 ? 'continuez comme ça !' : 'commencez aujourd\'hui !',
+      sub: streak > 0 ? t('stats.streakPositive') : t('stats.streakZero'),
       color: '#EF4444',
     },
   ];

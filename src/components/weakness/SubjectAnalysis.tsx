@@ -15,13 +15,15 @@ import {
 } from 'recharts';
 import { useStudentStore } from '../../stores/useStudentStore';
 import { Badge } from '../ui/Badge';
-import { getLevelLabel } from '../../utils/helpers';
+import { getLevelLabel, getSubjectLabel } from '../../utils/helpers';
+import { useTranslation } from 'react-i18next';
 
 export const SubjectAnalysis: React.FC = () => {
   const { subjectGrades } = useStudentStore();
+  const { t } = useTranslation();
 
   const radarData = subjectGrades.map((g) => ({
-    subject: g.subject,
+    subject: getSubjectLabel(g.subject),
     score: g.average,
     fullMark: 20,
   }));
@@ -29,7 +31,7 @@ export const SubjectAnalysis: React.FC = () => {
   const barData = subjectGrades
     .slice()
     .sort((a, b) => a.average - b.average)
-    .map((g) => ({ name: g.subject, score: g.average, color: g.color }));
+    .map((g) => ({ name: getSubjectLabel(g.subject), score: g.average, color: g.color }));
 
   const getLevelVariant = (level: string) => {
     if (level === 'good') return 'success';
@@ -39,12 +41,12 @@ export const SubjectAnalysis: React.FC = () => {
 
   return (
     <div className="backdrop-blur-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-5 shadow-sm dark:shadow-none">
-      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-5">Analyse des performances</h3>
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-5">{t('weakness.analysisTitle')}</h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Radar Chart */}
         <div>
-          <p className="text-sm text-gray-500 dark:text-white/50 mb-3">Profil de compétences</p>
+          <p className="text-sm text-gray-500 dark:text-white/50 mb-3">{t('dashboard.skillsProfile')}</p>
           <ResponsiveContainer width="100%" height={250}>
             <RadarChart data={radarData}>
               <PolarGrid stroke="rgba(255,255,255,0.1)" />
@@ -53,7 +55,7 @@ export const SubjectAnalysis: React.FC = () => {
                 tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }}
               />
               <Radar
-                name="Score"
+                name={t('common.score')}
                 dataKey="score"
                 stroke="#F7931A"
                 fill="#F7931A"
@@ -68,7 +70,7 @@ export const SubjectAnalysis: React.FC = () => {
                   color: 'white',
                   fontSize: '12px',
                 }}
-                formatter={(value: number) => [`${value}/20`, 'Score']}
+                formatter={(value: number) => [`${value}/20`, t('common.score')]}
               />
             </RadarChart>
           </ResponsiveContainer>
@@ -76,7 +78,7 @@ export const SubjectAnalysis: React.FC = () => {
 
         {/* Bar Chart */}
         <div>
-          <p className="text-sm text-gray-500 dark:text-white/50 mb-3">Comparatif des moyennes</p>
+          <p className="text-sm text-gray-500 dark:text-white/50 mb-3">{t('weakness.comparison')}</p>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={barData} layout="vertical" margin={{ left: 10, right: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
@@ -103,7 +105,7 @@ export const SubjectAnalysis: React.FC = () => {
                   color: 'white',
                   fontSize: '12px',
                 }}
-                formatter={(value: number) => [`${value}/20`, 'Moyenne']}
+                formatter={(value: number) => [`${value}/20`, t('common.average')]}
               />
               <Bar dataKey="score" radius={[0, 6, 6, 0]}>
                 {barData.map((entry, index) => (
@@ -117,14 +119,14 @@ export const SubjectAnalysis: React.FC = () => {
 
       {/* Subject level badges */}
       <div className="mt-5 pt-4 border-t border-gray-100 dark:border-white/5">
-        <p className="text-sm text-gray-500 dark:text-white/50 mb-3">Niveaux par matière</p>
+        <p className="text-sm text-gray-500 dark:text-white/50 mb-3">{t('weakness.levelsBySubject')}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {subjectGrades.map((g) => (
             <div
               key={g.subject}
               className="flex items-center justify-between px-3 py-2 rounded-xl bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5"
             >
-              <span className="text-sm text-gray-600 dark:text-white/70">{g.subject}</span>
+                <span className="text-sm text-gray-600 dark:text-white/70">{getSubjectLabel(g.subject)}</span>
               <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold" style={{ color: g.color }}>
                   {g.average}

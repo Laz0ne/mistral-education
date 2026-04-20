@@ -3,17 +3,12 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { usePlannerStore } from '../../stores/usePlannerStore';
 import { PlannerEvent } from '../../types';
+import { useTranslation } from 'react-i18next';
+import { getSubjectLabel } from '../../utils/helpers';
 
 interface CalendarProps {
   onEventClick?: (event: PlannerEvent) => void;
 }
-
-const DAYS_FR = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
-const typeLabels: Record<string, string> = {
-  exam: 'Exam',
-  homework: 'Devoir',
-  revision: 'Révision',
-};
 
 function getWeekDates(baseDate: Date): Date[] {
   const d = new Date(baseDate);
@@ -30,6 +25,10 @@ function getWeekDates(baseDate: Date): Date[] {
 export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const { events } = usePlannerStore();
+  const { t, i18n } = useTranslation();
+  const days = i18n.resolvedLanguage === 'en'
+    ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    : ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 
   const weekDates = getWeekDates(currentDate);
 
@@ -50,7 +49,8 @@ export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
     return events.filter((e) => e.date === dateStr);
   };
 
-  const weekLabel = `${weekDates[0]?.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })} – ${weekDates[6]?.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })}`;
+  const locale = i18n.resolvedLanguage === 'en' ? 'en-US' : 'fr-FR';
+  const weekLabel = `${weekDates[0]?.toLocaleDateString(locale, { day: '2-digit', month: 'short' })} – ${weekDates[6]?.toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })}`;
   const today = new Date().toISOString().split('T')[0];
 
   return (
@@ -68,7 +68,7 @@ export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
             onClick={() => setCurrentDate(new Date())}
             className="px-2.5 py-1 rounded-lg text-xs text-gray-500 dark:text-white/50 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
           >
-            Aujourd'hui
+            {t('planner.todayButton')}
           </button>
           <button
             onClick={goToNextWeek}
@@ -80,7 +80,7 @@ export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
       </div>
 
       <div className="grid grid-cols-7 gap-1">
-        {DAYS_FR.map((day) => (
+        {days.map((day) => (
           <div key={day} className="text-center text-xs font-medium text-gray-400 dark:text-white/40 py-2">
             {day}
           </div>
@@ -122,8 +122,8 @@ export const Calendar: React.FC<CalendarProps> = ({ onEventClick }) => {
                       textDecoration: event.completed ? 'line-through' : 'none',
                     }}
                   >
-                    {typeLabels[event.type]} · {event.subject}
-                  </motion.button>
+                     {t(`planner.typeLabels.${event.type}`)} · {getSubjectLabel(event.subject)}
+                   </motion.button>
                 ))}
                 {dayEvents.length > 3 && (
                   <p className="text-xs text-gray-300 dark:text-white/30 text-center">+{dayEvents.length - 3}</p>

@@ -120,7 +120,16 @@
       "fair": "Niveau passable. Un effort régulier te permettra de progresser significativement.",
       "needsWork": "Des efforts importants sont nécessaires. Sois courageux, chaque progrès compte !"
     },
-    "mediumRec": "Tu es sur la bonne voie ! Pour passer au niveau supérieur, fais des exercices réguliers et utilise l'aide aux devoirs pour les points bloquants."
+    "mediumRec": "Tu es sur la bonne voie ! Pour passer au niveau supérieur, fais des exercices réguliers et utilise l'aide aux devoirs pour les points bloquants.",
+    "recommendations": {
+      "maths": "Avec {{score}}/20 en Maths, concentre-toi sur les exercices de base. Reprends les fondamentaux et fais des exercices quotidiens. Utilise l'aide aux devoirs pour poser tes questions.",
+      "french": "En Français ({{score}}/20), travaille la lecture régulière et l'analyse de textes. Révise les figures de style et la structure des dissertations.",
+      "history": "En Histoire ({{score}}/20), crée des fiches de révision chronologiques. Mémorise les dates clés et les enchaînements d'événements.",
+      "physics": "En Physique ({{score}}/20), assure-toi de comprendre les formules avant de les appliquer. Fais des schémas et résous des problèmes pas à pas.",
+      "english": "En Anglais ({{score}}/20), pratique quotidiennement : podcasts, séries en VO. Révise les temps et le vocabulaire thématique.",
+      "biology": "En SVT ({{score}}/20), utilise des schémas pour mémoriser les cycles et structures. Les exercices pratiques t'aideront à comprendre.",
+      "generic": "Pour {{subject}} ({{score}}/20), revois les bases et fais des exercices réguliers pour progresser."
+    }
   },
   "exercises": {
     "title": "Exercices",
@@ -160,6 +169,7 @@
     "subject": "Matière",
     "date": "Date",
     "time": "Heure",
+    "at": "à",
     "description": "Description",
     "markDone": "Marquer terminé",
     "markUndone": "Marquer incomplet",

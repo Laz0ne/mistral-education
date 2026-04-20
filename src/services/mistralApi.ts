@@ -1,6 +1,14 @@
 import { ChatMessage } from '../types';
 import i18n from '../i18n';
 
+function getSystemPrompt(): string {
+  if (i18n.resolvedLanguage === 'en') {
+    return 'You are a Mistral Education tutoring assistant. You help students understand their lessons. You provide clear, educational explanations adapted to middle/high school level. You never give direct answers; instead, you guide the student to understanding. Always answer in English.';
+  }
+
+  return "Tu es un assistant éducatif Mistral Education. Tu aides les élèves à comprendre leurs cours. Tu donnes des explications claires, pédagogiques et adaptées au niveau lycée/collège. Tu ne donnes jamais directement les réponses mais tu guides l'élève vers la compréhension. Réponds toujours en français.";
+}
+
 export async function sendMessage(
   messages: ChatMessage[],
   apiKey: string
@@ -12,7 +20,7 @@ export async function sendMessage(
   }
 
   const apiMessages = [
-    { role: 'system', content: i18n.t('mistral.systemPrompt') },
+    { role: 'system', content: getSystemPrompt() },
     ...messages.map((m) => ({
       role: m.role,
       content: m.content,

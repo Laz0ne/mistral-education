@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 export const WeaknessReport: React.FC = () => {
   const { subjectGrades } = useStudentStore();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const weakSubjects = subjectGrades.filter((g) => g.level === 'needs-improvement');
   const mediumSubjects = subjectGrades.filter((g) => g.level === 'medium');
@@ -15,27 +15,19 @@ export const WeaknessReport: React.FC = () => {
   const avg = calculateAverage(subjectGrades.map((g) => g.average));
 
   const getRecommendation = (subject: string, score: number): string => {
-    if (i18n.resolvedLanguage === 'en') {
-      const recs: Record<string, string> = {
-        Maths: `With ${score}/20 in Math, focus on foundational exercises. Review core concepts and practice daily. Use Homework Help whenever you are blocked.`,
-        Français: `In French (${score}/20), practice regular reading and text analysis. Review rhetorical devices and essay structure.`,
-        Histoire: `In History (${score}/20), build chronological revision sheets. Memorize key dates and event sequences.`,
-        Physique: `In Physics (${score}/20), understand formulas before applying them. Draw diagrams and solve problems step by step.`,
-        Anglais: `In English (${score}/20), practice daily with podcasts and videos. Review tenses and thematic vocabulary.`,
-        SVT: `In Biology (${score}/20), use diagrams to memorize cycles and structures. Practical exercises will help reinforce understanding.`,
-      };
-      return recs[subject] ?? `For ${getSubjectLabel(subject)} (${score}/20), review basics and practice regularly to improve.`;
-    }
-
-    const recs: Record<string, string> = {
-      Maths: `Avec ${score}/20 en Maths, concentre-toi sur les exercices de base. Reprends les fondamentaux et fais des exercices quotidiens. Utilise l'aide aux devoirs pour poser tes questions.`,
-      Français: `En Français (${score}/20), travaille la lecture régulière et l'analyse de textes. Révise les figures de style et la structure des dissertations.`,
-      Histoire: `En Histoire (${score}/20), crée des fiches de révision chronologiques. Mémorise les dates clés et les enchaînements d'événements.`,
-      Physique: `En Physique (${score}/20), assure-toi de comprendre les formules avant de les appliquer. Fais des schémas et résous des problèmes pas à pas.`,
-      Anglais: `En Anglais (${score}/20), pratique quotidiennement : podcasts, séries en VO. Révise les temps et le vocabulaire thématique.`,
-      SVT: `En SVT (${score}/20), utilise des schémas pour mémoriser les cycles et structures. Les exercices pratiques t'aideront à comprendre.`,
+    const subjectKeyMap: Record<string, string> = {
+      Maths: 'maths',
+      Français: 'french',
+      Histoire: 'history',
+      Physique: 'physics',
+      Anglais: 'english',
+      SVT: 'biology',
     };
-    return recs[subject] ?? `Pour ${getSubjectLabel(subject)} (${score}/20), revois les bases et fais des exercices réguliers pour progresser.`;
+    const key = subjectKeyMap[subject];
+    if (key) {
+      return t(`weakness.recommendations.${key}`, { score });
+    }
+    return t('weakness.recommendations.generic', { subject: getSubjectLabel(subject), score });
   };
 
   return (

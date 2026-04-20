@@ -14,12 +14,11 @@ void i18n
     },
     fallbackLng: 'fr',
     supportedLngs: ['fr', 'en'],
-    lng: 'fr',
     interpolation: {
       escapeValue: false,
     },
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['localStorage'],
       caches: ['localStorage'],
     },
   });

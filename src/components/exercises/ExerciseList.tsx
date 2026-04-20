@@ -10,7 +10,8 @@ interface ExerciseListProps {
   onStart: (exercise: Exercise) => void;
 }
 
-const SUBJECTS = ['all', 'Maths', 'Français', 'Histoire', 'Physique', 'Anglais', 'SVT'];
+const SUBJECT_VALUES = ['Maths', 'Français', 'Histoire', 'Physique', 'Anglais', 'SVT'];
+const SUBJECTS = ['all', ...SUBJECT_VALUES];
 const DIFFICULTIES = ['all', 'easy', 'medium', 'hard'];
 const STATUSES = ['all', 'todo', 'in-progress', 'completed'];
 

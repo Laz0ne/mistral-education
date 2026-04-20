@@ -103,7 +103,7 @@ export const StudyPlan: React.FC = () => {
                     <div className="flex items-center gap-2 mt-1">
                       <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-white/40">
                         <Clock className="w-3 h-3" />
-                        {formatDate(event.date)} · {event.time}
+                        {formatDate(event.date)} {t('planner.at')} {event.time}
                       </div>
                       {!event.completed && (
                         <span

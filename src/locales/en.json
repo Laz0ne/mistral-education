@@ -120,7 +120,16 @@
       "fair": "Fair level. Consistent effort will help you improve significantly.",
       "needsWork": "Major effort is needed. Stay strong—every bit of progress matters!"
     },
-    "mediumRec": "You're on the right track! To reach the next level, practice regularly and use homework help for blocking points."
+    "mediumRec": "You're on the right track! To reach the next level, practice regularly and use homework help for blocking points.",
+    "recommendations": {
+      "maths": "With {{score}}/20 in Math, focus on foundational exercises. Review core concepts and practice daily. Use Homework Help whenever you are blocked.",
+      "french": "In French ({{score}}/20), practice regular reading and text analysis. Review rhetorical devices and essay structure.",
+      "history": "In History ({{score}}/20), build chronological revision sheets. Memorize key dates and event sequences.",
+      "physics": "In Physics ({{score}}/20), understand formulas before applying them. Draw diagrams and solve problems step by step.",
+      "english": "In English ({{score}}/20), practice daily with podcasts and videos. Review tenses and thematic vocabulary.",
+      "biology": "In Biology ({{score}}/20), use diagrams to memorize cycles and structures. Practical exercises will help reinforce understanding.",
+      "generic": "For {{subject}} ({{score}}/20), review basics and practice regularly to improve."
+    }
   },
   "exercises": {
     "title": "Exercises",
@@ -160,6 +169,7 @@
     "subject": "Subject",
     "date": "Date",
     "time": "Time",
+    "at": "at",
     "description": "Description",
     "markDone": "Mark as completed",
     "markUndone": "Mark as incomplete",
